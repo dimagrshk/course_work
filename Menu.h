@@ -10,19 +10,26 @@
 
 class Menu {
 private:
-	
-public:
-	void Budy();
-	void create_exam(Queue &q);
-	void create_test(Queue &q);
-	void show_queue(Queue &q);
-	void remove_queue(Queue &q);
 	Menu() {
 
 	}
 	~Menu() {
 
 	}
+	Menu(const Menu&);
+	Menu& operator=(Menu const&);
+public:
+	static Menu &instance()
+	{
+		static Menu m;
+		return m;
+	}
+	void Budy();
+	void create_exam(Queue &q);
+	void create_test(Queue &q);
+	void show_queue(Queue &q);
+	void remove_queue(Queue &q);
+	
 	
 
 };

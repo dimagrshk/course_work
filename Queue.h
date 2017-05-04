@@ -23,10 +23,15 @@ private:
 	Node *rear;
 	int items; // 
 	Queue(const Queue & q);//
-	Queue & operator=(const Queue & q) { return *this; }//
-public:
+	Queue & operator=(const Queue & q);
 	Queue();
 	~Queue();
+public:
+	static Queue &instance()
+	{
+		static Queue qe;
+		return qe;
+	}
 	bool isempty() const;
 	int queue_counter() const;
 	bool enqueue(const Item & item);

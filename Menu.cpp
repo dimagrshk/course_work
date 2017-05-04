@@ -8,16 +8,7 @@ void init_fields(Try * item, Queue &q)
 	item->set_var();
 	item->set_num();
 	item->set_question();
-	// can exist in other method
-	//e->set_type();
 	q.enqueue(item);
-	//cout << "subject: ";
-	////cin >> *subj;
-	//getline(cin, *subj, '\n');
-	//cout << "variant: ";
-	//cin >> *var;
-	//cout << "number of question: ";
-	//cin >> *num;
 }
 
 void save_to_file(Queue &q)
@@ -55,7 +46,7 @@ void read_from_file(Queue &q)
 void Menu::Budy()
 {
 	int key;
-	Queue q;
+	Queue &q = Queue::instance();
 	char s[10];
 	do
 	{
@@ -82,31 +73,7 @@ void Menu::Budy()
 			std::cout << "<1>\n";
 			cout << "Creating Test: " << endl;
 			create_test(q);
-			//char variant;
-			//string subject;
-			//unsigned int num_of_question;
-			//init_fields(&subject, &num_of_question, &variant);
-			//string *question = new string[num_of_question];
-			//test_content *works = new test_content[num_of_question];
-			//for (int i = 0; i < num_of_question; i++)
-			//{
-			//	cout << "question:";
-			//	getline(cin>>ws, question[i], '\n');
-			//	//cout << "\n";
-			//	for (int j = 0; j < 4; j++)
-			//	{
-			//		cout << "answer:";
-			//		//cin >> works[i].answer[j];
-			//		//cin.ignore();
-			//		getline(cin>>ws, works[i].answer[j], '\n');
-			//		//cin.clear(); 
-			//		//cout << "\n";
-			//	}
-			//}
-			//Try *tmp = new Test(subject, question, num_of_question, variant, works);
-			//q.enqueue(tmp);
-			//delete[] question;
-			//delete[] works;
+			
 			system("pause");
 			break;
 		}
@@ -116,29 +83,7 @@ void Menu::Budy()
 			std::cout << "<2>\n"; 
 			cout << "Creating Exam: " << endl;
 			create_exam(q);
-			//char variant;
-			//string subject, type;
-			//unsigned int num_of_question;
-			//init_fields(&subject, &num_of_question, &variant);
-			//string *question = new string[num_of_question];
-			//for (int i = 0; i < num_of_question; i++)
-			//{
-			//	cout << "question: ";
-			//	//cin >> tmp_q[i];
-			//	//cin.ignore();
-			//	getline(cin>>ws, question[i]);
-			//	cout << "> " << question[i] << endl;
-			//}
-			//cout << "Verb or write?" << endl;
-			//int choice;
-			//cin >> choice;
-			//if (choice)
-			//	type = "verb";
-			//else
-			//	type = "write";
-			//Try *tmp = new Exam(subject, question, num_of_question, variant, type);
-			//q.enqueue(tmp);
-			//delete[] question;
+			
 			system("pause");
 			break;
 		}
@@ -148,20 +93,6 @@ void Menu::Budy()
 			std::cout << "<3>\n";
 			cout << "Creating Try: " << endl;
 			cout << "It`s a virtual class:)" << endl;
-			//char variant;
-			//string subject;
-			//unsigned int num_of_question;
-			//init_fields(&subject, &num_of_question, &variant);
-			//string *question = new string[num_of_question];
-			//for (int i = 0; i < num_of_question; i++)
-			//{
-			//	cout << "question: ";
-			//	//cin >> question[i];
-			//	getline(cin >> ws, question[i]);
-			//	cout << "> " << question[i] << endl;
-			//}
-			//Try *tmp = new Try(subject, question, num_of_question, variant);
-			//q.enqueue(tmp);
 			system("pause");
 			break;
 		}
@@ -170,7 +101,6 @@ void Menu::Budy()
 			system("cls");
 			std::cout << "<4>\n";
 			show_queue(q);
-			//q.travel();
 			system("pause");
 			break;
 		}
@@ -178,7 +108,6 @@ void Menu::Budy()
 		{
 			system("cls");
 			std::cout << "<5>\n";
-			////
 			q.dequeue();
 			system("pause");
 			break;
@@ -188,7 +117,6 @@ void Menu::Budy()
 			system("cls");
 			std::cout << "<6>\n";
 			save_to_file(q);
-			//q.travel_to_file();
 			system("pause");
 			break;
 		}
@@ -197,7 +125,6 @@ void Menu::Budy()
 			system("cls");
 			std::cout << "<7>\n";
 			read_from_file(q);
-			//q.read_from_file();
 			system("pause");
 			break;
 		}

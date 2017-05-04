@@ -8,7 +8,7 @@
 int main()
 {
 	cout << "Hello";
-	Menu my_menu;
-	my_menu.Budy();
+	Menu& instance = Menu::instance();
+	instance.Budy();
 	return 0;
 }
