@@ -7,11 +7,11 @@
 
 using namespace std;
 
-typedef Try * Item;
+//typedef Try * Try *;
 
 struct Node
 {
-	Item item;
+	Try * item;
 	struct Node * next;
 };
 
@@ -21,7 +21,7 @@ private:
 	
 	Node *front;
 	Node *rear;
-	int items; // 
+	//int items; // 
 	Queue(const Queue & q);//
 	Queue & operator=(const Queue & q);
 	Queue();
@@ -33,9 +33,9 @@ public:
 		return qe;
 	}
 	bool isempty() const;
-	int queue_counter() const;
-	bool enqueue(const Item & item);
-	bool dequeue();
+	int counter() const;
+	bool push(Try * & item);
+	bool pop();
 	void travel() const;
 	void travel_to_file() const;
 	void read_from_file();

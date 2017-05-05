@@ -5,15 +5,15 @@
 Queue::Queue()
 {
 	front = rear = nullptr;
-	items = 0;
+	//items = 0;
 }
 //add in queue
-bool Queue::enqueue(const Item & item)
+bool Queue::push(Try * & item)
 {
 	Node * add = new Node;
 	add->item = item;
 	add->next = nullptr;
-	items++;
+	//items++;
 	if (front == nullptr)
 		front = add;
 	else
@@ -22,18 +22,18 @@ bool Queue::enqueue(const Item & item)
 	return true;
 }
 //delete form queue
-bool Queue::dequeue()
+bool Queue::pop()
 {
-	Item item;
+	Try * item;
 	if (isempty())
 		return false;
 	item = front->item;
-	items--;
+	//items--;
 	Node * temp = front;
 	front = front->next;
 	delete temp->item;
 	delete temp;
-	if (items == 0)
+	if (counter() == 0)
 		rear = nullptr;
 	return true;
 }
@@ -51,21 +51,39 @@ Queue::~Queue()
 
 bool Queue::isempty() const
 {
-	return items == 0;
+	return counter() == 0;
 }
 
 
 
-int Queue::queue_counter() const
+
+int Queue::counter() const
 {
-	return items;
+	int count = 0;
+	if (front == nullptr)
+	{
+		return count;
+	}
+	else
+	{
+		Node * temp;
+		temp = front;
+		count++;
+		while (temp != rear)
+		{
+			temp = temp->next;
+			count++;
+		}
+		return count;
+	}
 }
 
 void Queue::travel() const
 {
 	Node *tmp;
 	tmp = front;
-	for (int i = 0; i < items; i++)
+	int length = this->counter();
+	for (int i = 0; i < length; i++)
 	{
 		tmp->item->show();
 		tmp = tmp->next;
@@ -98,14 +116,14 @@ void Queue::travel() const
 //		{
 //			Exam *e = new Exam();
 //			fin >> (*e);
-//			enqueue(e);
+//			push(e);
 //			//delete e;
 //		}
 //		else if (id == "Test")
 //		{
 //			Test *t = new Test();
 //			fin >> (*t);
-//			enqueue(t);
+//			push(t);
 //		}
 //		getline(fin, id);
 //	}

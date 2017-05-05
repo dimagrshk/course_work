@@ -8,14 +8,14 @@ void init_fields(Try * item, Queue &q)
 	item->set_var();
 	item->set_num();
 	item->set_question();
-	q.enqueue(item);
+	q.push(item);
 }
 
 void save_to_file(Queue &q)
 {
 	ofstream fout("chapie.txt");
 	fout.close();
-	for (int i = 0; i < q.queue_counter(); i++)
+	for (int i = 0; i < q.counter(); i++)
 		q[i]->save_to_file();
 }
 
@@ -30,13 +30,13 @@ void read_from_file(Queue &q)
 		{
 			Exam *e = new Exam();
 			fin >> (*e);
-			q.enqueue(e);
+			//q.push(e);
 		}
 		else if (id == "Test")
 		{
 			Test *t = new Test();
 			fin >> (*t);
-			q.enqueue(t);
+			//q.push(t);
 		}
 		getline(fin, id);
 	}
@@ -108,7 +108,7 @@ void Menu::Budy()
 		{
 			system("cls");
 			std::cout << "<5>\n";
-			q.dequeue();
+			q.pop();
 			system("pause");
 			break;
 		}
@@ -132,6 +132,7 @@ void Menu::Budy()
 		{
 			system("cls");
 			std::cout << "<8>\n";
+			cout << "size: " << q.counter() << endl;
 			system("pause");
 			break;
 		}
