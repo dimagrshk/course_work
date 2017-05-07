@@ -21,8 +21,11 @@ public:
 	void set_question();
 	void set_answer(int i);
 	void show() const;
+	// file
 	void save_to_file() const;
 	void read_from_file(istream & in);
+	ostream& operator<<(ostream& out);
+	// friends
 	friend ostream & operator<<(ostream & out, const Test & t);
 	friend istream & operator>>(istream & in, Test & t);
 };

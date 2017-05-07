@@ -94,3 +94,13 @@ void Try::save_to_file() const
 void Try::read_from_file(istream & in)
 {
 }
+
+ostream & Try::operator<<(ostream & out)
+{
+	return out;
+}
+
+ostream & operator<<(ostream & out, const Try & tr)
+{
+	return out;
+}

@@ -90,16 +90,22 @@ void Queue::travel() const
 	}
 }
 
-//void Queue::travel_to_file() const
-//{
-//	Node *tmp;
-//	tmp = front;
-//	for (int i = 0; i < counter(); i++)
-//	{
-//		tmp->item->save_to_file();
-//		tmp = tmp->next;
-//	}
-//}
+void Queue::travel_to_file() const
+{
+	ofstream fout("chapie.txt");
+	fout.close();
+	ofstream fout2("chapie2.txt");
+	fout2.close();
+	ofstream fout_ord("order.txt");
+	Node *tmp;
+	tmp = front;
+	for (int i = 0; i < counter(); i++)
+	{
+		*tmp->item << fout_ord;
+		tmp = tmp->next;
+	}
+	fout_ord.close();
+}
 
 //void Queue::read_from_file()
 //{

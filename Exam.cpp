@@ -61,6 +61,16 @@ void Exam::read_from_file(istream & in)
 	in >> *this;
 }
 
+ostream & Exam::operator<<(ostream & out)
+{
+	out << "Exam" << endl;
+	fstream fout("chapie2.txt", ios_base::app);
+	fout << "Exam" << "\n";
+	fout << *this;
+	fout.close();
+	return out;
+}
+
 ostream & operator<<(ostream & out, const Exam & e)
 {
 	out << e.subject << endl;
