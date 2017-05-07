@@ -21,47 +21,56 @@ void save_to_file(Queue &q)
 		q[i]->save_to_file();
 }
 
-void read_from_file(Queue &q)
+void moder_reading(Queue &q, string file_name)
 {
-	//ifstream fin("chapie.txt");
-	//string id;
-	//getline(fin, id);
-	//while (!fin.eof())
-	//{
-	//	if (id == "Exam")
-	//	{
-	//		Exam *e = new Exam();
-	//		fin >> (*e);
-	//		//q.push(e);
-	//	}
-	//	else if (id == "Test")
-	//	{
-	//		Test *t = new Test();
-	//		fin >> (*t);
-	//		//q.push(t);
-	//	}
-	//	getline(fin, id);
-	//}
-	//fin.close();
-	ifstream fin("chapie2.txt");
-	string key;
+	if (file_name != "chapie.txt" && file_name != "chapie2.txt")
+	{
+		cout << "wrong file name:(";
+		system("pause");
+		return;
+	}
+	ifstream fin(file_name);
+	string check;
+	Try *e;
 	while (!fin.eof())
+	{
+		if (!getline(fin, check))
+			break;
+		if (file_name == "chapie.txt")
 		{
-			if (!getline(fin, key))
-				break;
-			Try *e = new Exam();
-			//fin >> (*e);
+			Try *e = new Test();
 			e->read_from_file(fin);
 			q.push(e);
 		}
-	fin.close();
+		else if (file_name == "chapie2.txt")
+		{
+			Try *e = new Exam();
+			e->read_from_file(fin);
+			q.push(e);
+		}	
+	}
+}
+
+void read_from_file(Queue &q)
+{
+	
+	ifstream fin_exam("chapie2.txt");
+	string key;
+	while (!fin_exam.eof())
+		{
+			if (!getline(fin_exam, key))
+				break;
+			Try *e = new Exam();
+			e->read_from_file(fin_exam);
+			q.push(e);
+		}
+	fin_exam.close();
 	ifstream fin2("chapie.txt");
 	while (!fin2.eof())
 	{
 		if (!getline(fin2, key))
 			break;
 		Try *t = new Test();
-		//fin >> (*e);
 		t->read_from_file(fin2);
 		q.push(t);
 	} 
@@ -149,7 +158,9 @@ void Menu::Budy()
 		{
 			system("cls");
 			std::cout << "<7>\n";
-			read_from_file(q);
+			//read_from_file(q);
+			moder_reading(q, "chapie.txt");
+			moder_reading(q, "hapie2.txt");
 			system("pause");
 			break;
 		}

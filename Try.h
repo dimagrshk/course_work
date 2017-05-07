@@ -24,6 +24,8 @@ public:
 	virtual void set_var();
 	virtual void set_type();
 	virtual void show() const;
+
+	//to file
 	virtual void save_to_file() const;
 	virtual void read_from_file(istream & in);
 };
