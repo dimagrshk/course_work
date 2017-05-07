@@ -107,34 +107,30 @@ void Queue::travel_to_file() const
 	fout_ord.close();
 }
 
-//void Queue::read_from_file()
-//{
-//	ifstream fin("chapie.txt");
-//	//Exam *e;
-//	//Test *t;
-//	
-//	//Try *t = new Test("", nullptr, 0, '\0', nullptr);
-//	string id;
-//	getline(fin, id);
-//	while (!fin.eof())
-//	{
-//		if (id == "Exam")
-//		{
-//			Exam *e = new Exam();
-//			fin >> (*e);
-//			push(e);
-//			//delete e;
-//		}
-//		else if (id == "Test")
-//		{
-//			Test *t = new Test();
-//			fin >> (*t);
-//			push(t);
-//		}
-//		getline(fin, id);
-//	}
-//	fin.close();
-//}
+void Queue::read_from_file()
+{
+	ifstream fin_exam("chapie2.txt");
+	string key;
+	while (!fin_exam.eof())
+		{
+			if (!getline(fin_exam, key))
+				break;
+			Try *e = new Exam();
+			*e >> fin_exam;
+			push(e);
+		}
+	fin_exam.close();
+	ifstream fin2("chapie.txt");
+	while (!fin2.eof())
+	{
+		if (!getline(fin2, key))
+			break;
+		Try *t = new Test();
+		*t >> fin2;
+		push(t);
+	} 
+	fin2.close();
+}
 
 Try * Queue::operator[](int index) const
 {

@@ -100,7 +100,17 @@ ostream & Try::operator<<(ostream & out)
 	return out;
 }
 
-ostream & operator<<(ostream & out, const Try & tr)
+istream & Try::operator>>(istream & in)
+{
+	return in;
+}
+
+ostream & operator<<(ostream & out, const Try * & tr)
 {
 	return out;
+}
+
+istream & operator>>(istream & in, const Try *& tr)
+{
+	return in;
 }

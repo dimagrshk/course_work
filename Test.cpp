@@ -73,7 +73,7 @@ void Test::show() const
 	}
 }
 
-void Test::save_to_file() const
+void Test::save_to_file() const // old method for saving
 {
 	fstream fout("chapie.txt", ios_base::app);
 	fout << "Test\n";
@@ -86,7 +86,7 @@ void Test::read_from_file(istream & in)
 	in >> *this;
 }
 
-ostream & Test::operator<<(ostream & out)
+ostream & Test::operator<<(ostream & out) // new method for saving
 {
 	out << "Test" << endl;
 	fstream fout("chapie.txt", ios_base::app);
@@ -94,6 +94,11 @@ ostream & Test::operator<<(ostream & out)
 	fout << *this;
 	fout.close();
 	return out;
+}
+
+istream & Test::operator>>(istream & in)
+{
+	return in >> *this;
 }
 
 ostream & operator<<(ostream & out, const Test & t)

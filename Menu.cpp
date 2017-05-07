@@ -11,18 +11,18 @@ void init_fields(Try * item, Queue &q)
 	q.push(item);
 }
 
-void save_to_file(Queue &q)
-{
-	ofstream fout("chapie.txt");
-	fout.close();
-	ofstream fout2("chapie2.txt");
-	fout2.close();
-	////
-	for (int i = 0; i < q.counter(); i++)
-		q[i]->save_to_file();
-}
+//void save_to_file(Queue &q)
+//{
+//	ofstream fout("chapie.txt");
+//	fout.close();
+//	ofstream fout2("chapie2.txt");
+//	fout2.close();
+//	////
+//	for (int i = 0; i < q.counter(); i++)
+//		q[i]->save_to_file();
+//}
 
-void moder_reading(Queue &q, string file_name)
+void modern_reading(Queue &q, string file_name)
 {
 	if (file_name != "chapie.txt" && file_name != "chapie2.txt")
 	{
@@ -161,8 +161,9 @@ void Menu::Budy()
 			system("cls");
 			std::cout << "<7>\n";
 			//read_from_file(q);
-			moder_reading(q, "chapie.txt");
-			moder_reading(q, "chapie2.txt");
+			/*modern_reading(q, "chapie.txt");
+			modern_reading(q, "chapie2.txt");*/
+			q.read_from_file();
 			system("pause");
 			break;
 		}

@@ -29,7 +29,8 @@ public:
 	virtual void save_to_file() const;
 	virtual void read_from_file(istream & in);
 	virtual ostream& operator<<(ostream& out);
-
+	virtual istream& operator>>(istream& in);
 	// friends
-	friend ostream& operator<<(ostream& out, const Try & tr);
+	friend ostream& operator<<(ostream& out, const Try * & tr);
+	friend istream& operator>>(istream& in, const Try * & tr);
 };

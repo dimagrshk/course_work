@@ -22,7 +22,7 @@ public:
 	void save_to_file() const;
 	void read_from_file(istream & in);
 	ostream& operator<<(ostream& out);
-	
+	istream& operator>>(istream& in);
 	// friend functions
 	friend ostream & operator<<(ostream & out, const Exam & e);
 	friend istream & operator>>(istream & in, Exam & e);

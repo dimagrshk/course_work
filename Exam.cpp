@@ -40,7 +40,7 @@ void Exam::show() const
 	cout << "type: " << type << endl;
 }
 
-void Exam::save_to_file() const
+void Exam::save_to_file() const // old method for saving
 {
 	fstream fout("chapie2.txt", ios_base::app);
 	fout << "Exam" << "\n";
@@ -61,7 +61,7 @@ void Exam::read_from_file(istream & in)
 	in >> *this;
 }
 
-ostream & Exam::operator<<(ostream & out)
+ostream & Exam::operator<<(ostream & out) // new method for saving
 {
 	out << "Exam" << endl;
 	fstream fout("chapie2.txt", ios_base::app);
@@ -69,6 +69,11 @@ ostream & Exam::operator<<(ostream & out)
 	fout << *this;
 	fout.close();
 	return out;
+}
+
+istream & Exam::operator>>(istream & in)
+{
+	return in >> *this;
 }
 
 ostream & operator<<(ostream & out, const Exam & e)

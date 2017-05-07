@@ -25,6 +25,7 @@ public:
 	void save_to_file() const;
 	void read_from_file(istream & in);
 	ostream& operator<<(ostream& out);
+	istream& operator>>(istream& in);
 	// friends
 	friend ostream & operator<<(ostream & out, const Test & t);
 	friend istream & operator>>(istream & in, Test & t);
