@@ -94,7 +94,7 @@ void Queue::travel() const
 //{
 //	Node *tmp;
 //	tmp = front;
-//	for (int i = 0; i < items; i++)
+//	for (int i = 0; i < counter(); i++)
 //	{
 //		tmp->item->save_to_file();
 //		tmp = tmp->next;

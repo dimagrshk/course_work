@@ -19,7 +19,7 @@ public:
 	void set_type();
 	void show() const;
 	void save_to_file() const;
-	//void read_from_file();
+	void read_from_file(istream & in);
 	friend ostream & operator<<(ostream & out, const Exam & e);
 	friend istream & operator>>(istream & in, Exam & e);
 };

@@ -79,7 +79,7 @@ void Try::show() const
 
 void Try::save_to_file() const
 {
-	fstream fout("chapie.txt", ios_base::app);
+	/*fstream fout("chapie.txt", ios_base::app);
 	fout << "For Try" << endl;
 	fout << "subject: " << subject << endl;
 	fout << "variant: " << variant << endl;
@@ -88,9 +88,9 @@ void Try::save_to_file() const
 	{
 		fout << questions[i] << endl;
 	}
-	fout.close();
+	fout.close();*/
 }
 
-//void Try::read_from_file()
-//{
-//}
+void Try::read_from_file(istream & in)
+{
+}

@@ -42,7 +42,7 @@ void Exam::show() const
 
 void Exam::save_to_file() const
 {
-	fstream fout("chapie.txt", ios_base::app);
+	fstream fout("chapie2.txt", ios_base::app);
 	fout << "Exam" << "\n";
 	fout << *this;
 	/*fout << "For exam: \n";
@@ -54,6 +54,11 @@ void Exam::save_to_file() const
 		fout << questions[i] << endl;
 	}*/
 	fout.close();
+}
+
+void Exam::read_from_file(istream & in)
+{
+	in >> *this;
 }
 
 ostream & operator<<(ostream & out, const Exam & e)

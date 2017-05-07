@@ -15,32 +15,57 @@ void save_to_file(Queue &q)
 {
 	ofstream fout("chapie.txt");
 	fout.close();
+	ofstream fout2("chapie2.txt");
+	fout2.close();
 	for (int i = 0; i < q.counter(); i++)
 		q[i]->save_to_file();
 }
 
 void read_from_file(Queue &q)
 {
-	ifstream fin("chapie.txt");
-	string id;
-	getline(fin, id);
+	//ifstream fin("chapie.txt");
+	//string id;
+	//getline(fin, id);
+	//while (!fin.eof())
+	//{
+	//	if (id == "Exam")
+	//	{
+	//		Exam *e = new Exam();
+	//		fin >> (*e);
+	//		//q.push(e);
+	//	}
+	//	else if (id == "Test")
+	//	{
+	//		Test *t = new Test();
+	//		fin >> (*t);
+	//		//q.push(t);
+	//	}
+	//	getline(fin, id);
+	//}
+	//fin.close();
+	ifstream fin("chapie2.txt");
+	string key;
 	while (!fin.eof())
-	{
-		if (id == "Exam")
 		{
-			Exam *e = new Exam();
-			fin >> (*e);
-			//q.push(e);
+			if (!getline(fin, key))
+				break;
+			Try *e = new Exam();
+			//fin >> (*e);
+			e->read_from_file(fin);
+			q.push(e);
 		}
-		else if (id == "Test")
-		{
-			Test *t = new Test();
-			fin >> (*t);
-			//q.push(t);
-		}
-		getline(fin, id);
-	}
 	fin.close();
+	ifstream fin2("chapie.txt");
+	while (!fin2.eof())
+	{
+		if (!getline(fin2, key))
+			break;
+		Try *t = new Test();
+		//fin >> (*e);
+		t->read_from_file(fin2);
+		q.push(t);
+	} 
+	fin2.close();
 }
 
 void Menu::Budy()

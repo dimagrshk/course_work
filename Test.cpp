@@ -81,6 +81,11 @@ void Test::save_to_file() const
 	fout.close();
 }
 
+void Test::read_from_file(istream & in)
+{
+	in >> *this;
+}
+
 ostream & operator<<(ostream & out, const Test & t)
 {
 	out << t.subject << endl;
