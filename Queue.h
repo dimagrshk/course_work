@@ -39,5 +39,6 @@ public:
 	void travel() const;
 	void travel_to_file() const;
 	void read_from_file();
+	void sort_queue();
 	Try	* operator[](int i) const;
 };

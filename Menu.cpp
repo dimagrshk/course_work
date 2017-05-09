@@ -171,7 +171,7 @@ void Menu::Budy()
 		{
 			system("cls");
 			std::cout << "<8>\n";
-			cout << "size: " << q.counter() << endl;
+			sort(q);
 			system("pause");
 			break;
 		}
@@ -221,4 +221,9 @@ void Menu::show_queue(Queue & q)
 void Menu::remove_queue(Queue & q)
 {
 
+}
+
+void Menu::sort(Queue &q)
+{
+	q.sort_queue();
 }

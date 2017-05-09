@@ -24,6 +24,11 @@ Try::~Try()
 	delete[] questions;
 }
 
+int Try::num_question()
+{
+	return num_of_question;
+}
+
 void Try::set_subject()
 {
 	cout << "subject: ";
@@ -103,6 +108,11 @@ ostream & Try::operator<<(ostream & out)
 istream & Try::operator>>(istream & in)
 {
 	return in;
+}
+
+Try* & Try::operator=(const Try* & obj)
+{
+	return *this = obj;
 }
 
 ostream & operator<<(ostream & out, const Try * & tr)

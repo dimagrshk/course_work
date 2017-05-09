@@ -132,6 +132,28 @@ void Queue::read_from_file()
 	fin2.close();
 }
 
+void Queue::sort_queue()
+{
+	Node *tmp;
+	Try *test;
+	tmp = front;
+	int length = this->counter();
+	for (int i = 0; i < length - 1; i++)
+	{
+		tmp = front;
+		for (int j = 0; j < length - i - 1; j++)
+		{
+			if (tmp->item->num_question() > tmp->next->item->num_question())
+			{
+				test = tmp->item;//				swap-algorithm
+				tmp->item = tmp->next->item;//
+				tmp->next->item = test;//
+			}
+			tmp = tmp->next;// travel to other elements
+		}
+	}
+}
+
 Try * Queue::operator[](int index) const
 {
 	Node *tmp;

@@ -18,6 +18,9 @@ public:
 	//Destructor
 	virtual ~Try();
 	//Methods
+	virtual int num_question();
+
+
 	virtual void set_subject();
 	virtual void set_question();
 	virtual void set_num();
@@ -30,6 +33,8 @@ public:
 	virtual void read_from_file(istream & in);
 	virtual ostream& operator<<(ostream& out);
 	virtual istream& operator>>(istream& in);
+	// for sorting
+	Try* & operator=(const Try* & obj);
 	// friends
 	friend ostream& operator<<(ostream& out, const Try * & tr);
 	friend istream& operator>>(istream& in, const Try * & tr);
