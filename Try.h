@@ -19,7 +19,7 @@ public:
 	virtual ~Try();
 	//Methods
 	virtual int num_question();
-
+	virtual string get_subject();
 
 	virtual void set_subject();
 	virtual void set_question();

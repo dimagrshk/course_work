@@ -154,6 +154,21 @@ void Queue::sort_queue()
 	}
 }
 
+void Queue::query_queue(string subj)
+{
+	Node *tmp;
+	tmp = front;
+	int length = this->counter();
+	for (int i = 0; i < length; i++)
+	{
+		if (tmp->item->get_subject() == subj)
+		{
+			tmp->item->show();
+		}
+		tmp = tmp->next;
+	}
+}
+
 Try * Queue::operator[](int index) const
 {
 	Node *tmp;

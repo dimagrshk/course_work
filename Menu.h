@@ -30,7 +30,7 @@ public:
 	void show_queue(Queue &q);
 	void remove_queue(Queue &q);
 	void sort(Queue &q);
-	
+	void query(Queue &q);
 
 };
 

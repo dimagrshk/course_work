@@ -179,6 +179,7 @@ void Menu::Budy()
 		{
 			system("cls");
 			std::cout << "<9>\n";
+			query(q);
 			system("pause");
 			break;
 		}
@@ -225,5 +226,14 @@ void Menu::remove_queue(Queue & q)
 
 void Menu::sort(Queue &q)
 {
+
 	q.sort_queue();
+}
+
+void Menu::query(Queue & q)
+{
+	string tmp;
+	cout << "input Subject: ";
+	cin >> tmp;
+	q.query_queue(tmp);
 }

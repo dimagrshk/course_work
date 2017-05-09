@@ -40,5 +40,6 @@ public:
 	void travel_to_file() const;
 	void read_from_file();
 	void sort_queue();
+	void query_queue(string subj);
 	Try	* operator[](int i) const;
 };

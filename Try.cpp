@@ -29,6 +29,11 @@ int Try::num_question()
 	return num_of_question;
 }
 
+string Try::get_subject()
+{
+	return subject;
+}
+
 void Try::set_subject()
 {
 	cout << "subject: ";
