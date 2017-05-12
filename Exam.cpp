@@ -64,16 +64,21 @@ void Exam::read_from_file(istream & in)
 ostream & Exam::operator<<(ostream & out) // new method for saving
 {
 	out << "Exam" << endl;
-	fstream fout("chapie2.txt", ios_base::app);
-	fout << "Exam" << "\n";
-	fout << *this;
-	fout.close();
+	/*fstream fout("chapie2.txt", ios_base::app);
+	fout << "Exam" << "\n";*/
+	//out << *this;
+	//fout.close();
+	this->Try::operator<<(out);
+	out << type << endl;
 	return out;
 }
 
 istream & Exam::operator>>(istream & in)
 {
-	return in >> *this;
+	this->Try::operator>>(in);
+	getline(in, type);
+	return in;
+	//return in >> *this;
 }
 
 ostream & operator<<(ostream & out, const Exam & e)

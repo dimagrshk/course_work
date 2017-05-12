@@ -25,7 +25,7 @@ public:
 	virtual void set_question();
 	virtual void set_num();
 	virtual void set_var();
-	virtual void set_type();
+	//virtual void set_type();
 	virtual void show() const;
 
 	//to file

@@ -5,7 +5,6 @@
 Queue::Queue()
 {
 	front = rear = nullptr;
-	//items = 0;
 }
 //add in queue
 bool Queue::push(Try * & item)
@@ -13,7 +12,6 @@ bool Queue::push(Try * & item)
 	Node * add = new Node;
 	add->item = item;
 	add->next = nullptr;
-	//items++;
 	if (front == nullptr)
 		front = add;
 	else
@@ -28,7 +26,6 @@ bool Queue::pop()
 	if (isempty())
 		return false;
 	item = front->item;
-	//items--;
 	Node * temp = front;
 	front = front->next;
 	delete temp->item;
@@ -93,43 +90,38 @@ void Queue::travel() const
 void Queue::travel_to_file() const
 {
 	ofstream fout("chapie.txt");
-	fout.close();
-	ofstream fout2("chapie2.txt");
-	fout2.close();
-	ofstream fout_ord("order.txt");
 	Node *tmp;
 	tmp = front;
 	for (int i = 0; i < counter(); i++)
 	{
-		*tmp->item << fout_ord;
+		*tmp->item << fout;
 		tmp = tmp->next;
 	}
-	fout_ord.close();
+	fout.close();
 }
 
 void Queue::read_from_file()
 {
-	ifstream fin_exam("chapie2.txt");
-	string key;
-	while (!fin_exam.eof())
+	ifstream fin("chapie.txt");
+	string id;
+	getline(fin, id);
+	while (!fin.eof())
+	{
+		if (id == "Exam")
 		{
-			if (!getline(fin_exam, key))
-				break;
 			Try *e = new Exam();
-			*e >> fin_exam;
+			*e >> fin;
 			push(e);
 		}
-	fin_exam.close();
-	ifstream fin2("chapie.txt");
-	while (!fin2.eof())
-	{
-		if (!getline(fin2, key))
-			break;
-		Try *t = new Test();
-		*t >> fin2;
-		push(t);
-	} 
-	fin2.close();
+		else if (id == "Test")
+		{
+			Try *t = new Test();
+			*t >> fin;
+			push(t);
+		}
+		getline(fin, id);
+	}
+	fin.close();
 }
 
 void Queue::sort_queue()

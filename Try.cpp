@@ -50,7 +50,6 @@ void Try::set_question()
 	for (int i = 0; i < num_of_question; i++)
 	{
 		cout << "question: ";
-		//cin >> question[i];
 		getline(cin >> ws, questions[i]);
 		cout << "> " << questions[i] << endl;
 	}
@@ -68,10 +67,10 @@ void Try::set_var()
 	cin >> variant;
 }
 
-void Try::set_type()
-{
-	
-}
+//void Try::set_type()
+//{
+//	
+//}
 
 void Try::show() const
 {
@@ -107,18 +106,36 @@ void Try::read_from_file(istream & in)
 
 ostream & Try::operator<<(ostream & out)
 {
+	/////
+	out << subject << endl;
+	out << variant << endl;
+	out << num_of_question << endl;
+	for (int i = 0; i < num_of_question; i++)
+	{
+		out << questions[i] << endl;
+	}
 	return out;
 }
 
 istream & Try::operator>>(istream & in)
 {
+	getline(in, subject);
+	in >> variant;
+	in.ignore();
+	in >> num_of_question;
+	in.ignore();
+	questions = new string[num_of_question];
+	for (int i = 0; i < num_of_question; i++)
+	{
+		getline(in >> ws, questions[i]);
+	}
 	return in;
 }
 
-Try* & Try::operator=(const Try* & obj)
-{
-	return *this = obj;
-}
+//Try* & Try::operator=(const Try* & obj)
+//{
+//	return *this = obj;
+//}
 
 ostream & operator<<(ostream & out, const Try * & tr)
 {

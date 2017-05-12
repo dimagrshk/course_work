@@ -89,16 +89,36 @@ void Test::read_from_file(istream & in)
 ostream & Test::operator<<(ostream & out) // new method for saving
 {
 	out << "Test" << endl;
-	fstream fout("chapie.txt", ios_base::app);
+	this->Try::operator<<(out);
+	for (int i = 0; i < num_of_question; i++)
+	{
+		//out << t.questions[i] << endl;
+		for (int j = 0; j < 4; j++)
+		{
+			out << works[i].answer[j] << endl;
+		}
+	}
+	/*fstream fout("chapie.txt", ios_base::app);
 	fout << "Test" << "\n";
 	fout << *this;
-	fout.close();
+	fout.close();*/
 	return out;
 }
 
 istream & Test::operator>>(istream & in)
 {
-	return in >> *this;
+	this->Try::operator>>(in);
+	works = new test_content[num_of_question];
+	for (int i = 0; i < num_of_question; i++)
+	{
+		//getline(in >> ws, questions[i]);
+		for (int j = 0; j < 4; j++)
+		{
+			getline(in >> ws, works[i].answer[j]);
+		}
+	}
+	return in;
+	//return in >> *this;
 }
 
 ostream & operator<<(ostream & out, const Test & t)
