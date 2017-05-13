@@ -135,7 +135,7 @@ void Queue::sort_queue()
 		tmp = front;
 		for (int j = 0; j < length - i - 1; j++)
 		{
-			if (tmp->item->num_question() > tmp->next->item->num_question())
+			if (tmp->item->get_subject() > tmp->next->item->get_subject())
 			{
 				test = tmp->item;//				swap-algorithm
 				tmp->item = tmp->next->item;//
