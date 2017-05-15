@@ -94,7 +94,8 @@ void Queue::travel_to_file() const
 	tmp = front;
 	for (int i = 0; i < counter(); i++)
 	{
-		*tmp->item << fout;
+		//*tmp->item << fout;
+		fout << tmp->item;
 		tmp = tmp->next;
 	}
 	fout.close();
@@ -110,13 +111,15 @@ void Queue::read_from_file()
 		if (id == "Exam")
 		{
 			Try *e = new Exam();
-			*e >> fin;
+			//*e >> fin;
+			fin >> e;
 			push(e);
 		}
 		else if (id == "Test")
 		{
 			Try *t = new Test();
-			*t >> fin;
+			//*t >> fin;
+			fin >> t;
 			push(t);
 		}
 		getline(fin, id);

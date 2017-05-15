@@ -137,12 +137,14 @@ istream & Try::operator>>(istream & in)
 //	return *this = obj;
 //}
 
-ostream & operator<<(ostream & out, const Try * & tr)
+ostream & operator<<(ostream & out, Try * & tr)
 {
+	*tr << out;
 	return out;
 }
 
-istream & operator>>(istream & in, const Try *& tr)
+istream & operator>>(istream & in, Try *& tr)
 {
+	*tr >> in;
 	return in;
 }

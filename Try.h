@@ -36,6 +36,6 @@ public:
 	// for sorting
 	Try* & operator=(const Try* & obj);
 	// friends
-	friend ostream& operator<<(ostream& out, const Try * & tr);
-	friend istream& operator>>(istream& in, const Try * & tr);
+	friend ostream& operator<<(ostream& out, Try * & tr);
+	friend istream& operator>>(istream& in, Try * & tr);
 };
