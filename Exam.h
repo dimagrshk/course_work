@@ -11,7 +11,7 @@ private:
 public:
 	//Construcors
 	Exam(); //defult
-	Exam(string sub, string *str, unsigned int num, char var, string typ);
+	Exam(string sub, string *str, unsigned int num, unsigned int var, string typ);
 	//Destructor
 	~Exam();
 	//Methods

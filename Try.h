@@ -10,11 +10,11 @@ protected:
 	string subject;
 	string *questions;
 	unsigned int num_of_question;
-	char variant;
+	unsigned int variant;
 public:
 	//Constructors
 	Try();
-	Try(string, string *, unsigned int, char);
+	Try(string, string *, unsigned int, unsigned int);
 	//Destructor
 	virtual ~Try();
 	//Methods

@@ -6,7 +6,7 @@ Exam::Exam()//:type(""), Try()
 {
 }
 
-Exam::Exam(string sub, string *str, unsigned int num, char var, string typ) : Try(sub, str, num, var)
+Exam::Exam(string sub, string *str, unsigned int num, unsigned int var, string typ) : Try(sub, str, num, var)
 {
 	type = typ;
 }

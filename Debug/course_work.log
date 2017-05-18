@@ -1,26 +1,9 @@
 ﻿  Try.cpp
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(25): warning C4018: '<': signed/unsigned mismatch
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(61): warning C4018: '<': signed/unsigned mismatch
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(93): warning C4018: '<': signed/unsigned mismatch
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(124): warning C4018: '<': signed/unsigned mismatch
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(165): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-  Compiling...
-  main.cpp
-  Test.cpp
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\test.cpp(11): warning C4018: '<': signed/unsigned mismatch
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\test.cpp(33): warning C4018: '<': signed/unsigned mismatch
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\test.cpp(66): warning C4018: '<': signed/unsigned mismatch
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\test.cpp(93): warning C4018: '<': signed/unsigned mismatch
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\test.cpp(112): warning C4018: '<': signed/unsigned mismatch
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\test.cpp(129): warning C4018: '<': signed/unsigned mismatch
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\test.cpp(149): warning C4018: '<': signed/unsigned mismatch
-  Queue.cpp
-  Menu.cpp
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\menu.cpp(35): warning C4101: 'e': unreferenced local variable
-  Exam.cpp
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\exam.cpp(89): warning C4018: '<': signed/unsigned mismatch
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\exam.cpp(105): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
+c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(26): warning C4018: '<': signed/unsigned mismatch
+c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(63): warning C4101: 'error': unreferenced local variable
+c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(79): warning C4018: '<': signed/unsigned mismatch
+c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(145): warning C4018: '<': signed/unsigned mismatch
+c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(176): warning C4018: '<': signed/unsigned mismatch
+c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(219): warning C4018: '<': signed/unsigned mismatch
   course_work.vcxproj -> C:\Users\Dima\Documents\Visual Studio 2017\Projects\course_work\Debug\course_work.exe
   course_work.vcxproj -> C:\Users\Dima\Documents\Visual Studio 2017\Projects\course_work\Debug\course_work.pdb (Partial PDB)

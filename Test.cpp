@@ -5,7 +5,7 @@ Test::Test()//: works(nullptr), Try()
 	works = nullptr;
 }
 
-Test::Test(string sub, string *str, unsigned int num, char var, test_content *arr) : Try(sub, str, num, var)
+Test::Test(string sub, string *str, unsigned int num, unsigned int var, test_content *arr) : Try(sub, str, num, var)
 {
 	works = new test_content[num_of_question];
 	for (int i = 0; i < num; i++)

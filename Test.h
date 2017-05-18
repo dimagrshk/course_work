@@ -14,7 +14,7 @@ private:
 public:
 	//Construcors
 	Test(); //default
-	Test(string sub, string *str, unsigned int num, char var, test_content *arr);
+	Test(string sub, string *str, unsigned int num, unsigned int var, test_content *arr);
 	//Destructor
 	~Test();
 	//Methods

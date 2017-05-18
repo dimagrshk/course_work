@@ -106,6 +106,7 @@ void Queue::read_from_file()
 	ifstream fin("chapie.txt");
 	if (fin)
 	{
+		bool check = false;
 		string id;
 		getline(fin, id);
 		while (!fin.eof())
@@ -116,22 +117,25 @@ void Queue::read_from_file()
 				//*e >> fin;
 				fin >> e;
 				push(e);
+				check = true;
 			}
 			else if (id == "Test")
 			{
+
 				Try *t = new Test();
 				//*t >> fin;
 				fin >> t;
 				push(t);
+				check = true;
 			}
 			else
 			{
-				cout << "File was changed,  information will be saved:)" << endl;
-				travel_to_file();
-				break;
+				cout << "wrong line :(" << endl;
+				//travel_to_file();
 			}
 			getline(fin, id);
 		}
+		if (!check) cout << "nothing have been read :(" << endl;
 		fin.close();
 	}
 	else

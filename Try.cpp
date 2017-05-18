@@ -2,6 +2,7 @@
 #include "Queue.h"
 #include <string>
 #include <iostream>
+#include <limits>
 
 //function for exception
 void exception_for_input()
@@ -10,7 +11,7 @@ void exception_for_input()
 	q.travel_to_file();
 	cout << "Information will be saved:)" << endl;
 	system("pause");
-	exit(1);
+	//exit(1);
 }
 
 Try::Try()//: subject(NULL), num_of_question(0), variant(NULL), questions(nullptr)
@@ -19,7 +20,7 @@ Try::Try()//: subject(NULL), num_of_question(0), variant(NULL), questions(nullpt
 }
 
 
-Try::Try(string sub, string *str, unsigned int num, char var) : subject(sub), num_of_question(num), variant(var)
+Try::Try(string sub, string *str, unsigned int num, unsigned int var) : subject(sub), num_of_question(num), variant(var)
 {
 	questions = new string[num_of_question];
 	for (int i = 0; i < num_of_question; i++)
@@ -47,8 +48,25 @@ string Try::get_subject()
 
 void Try::set_subject()
 {
-	cout << "subject: ";
-	getline(cin, subject, '\n');
+	while (true)
+	{
+		cout << "subject: ";
+		getline(cin, subject, '\n');
+		// check input
+		try
+		{
+			if (cin.fail() || subject == "")
+			{
+				throw "error";
+			}
+		}
+		catch (char * error)
+		{
+			cout << "Not correct input, try again" << endl;
+			continue;
+		}
+		break;
+	}
 }
 
 void Try::set_question()
@@ -62,20 +80,54 @@ void Try::set_question()
 	{
 		cout << "question: ";
 		getline(cin >> ws, questions[i]);
-		cout << "> " << questions[i] << endl;
+		//while (true)
+		//{
+		//	cout << "question: ";
+		//	getline(cin >> ws, questions[i]);
+		//	// check input
+		//	try
+		//	{
+		//		if (cin.fail() || questions[i] == "")
+		//		{
+		//			throw "error";
+		//		}
+		//	}
+		//	catch (char * error)
+		//	{
+		//		cout << "Not correct input, try again" << endl;
+		//		continue;
+		//	}
+		//	break;
+		//}
 	}
 }
 
 void Try::set_num()
 {
+	/*cout << "number of question: ";
+	cin >> num_of_question;*/
 	cout << "number of question: ";
 	cin >> num_of_question;
+	while (cin.fail() || num_of_question == 0)
+	{
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cout << "Not correct input, try again" << endl;
+		cin >> num_of_question;
+	}
 }
 
 void Try::set_var()
 {
 	cout << "variant: ";
 	cin >> variant;
+	while (cin.fail() || variant == 0)
+	{
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cout << "Not correct input, try again" << endl;
+		cin >> variant;
+	}
 }
 
 //void Try::set_type()
@@ -143,6 +195,7 @@ istream & Try::operator>>(istream & in)
 	{
 		cout << error << endl;
 		exception_for_input();
+		return in;
 	}
 	in.ignore();
 	//
@@ -158,6 +211,7 @@ istream & Try::operator>>(istream & in)
 	{
 		cout << error << endl;
 		exception_for_input();
+		return in;
 	}
 	//
 	in.ignore();
