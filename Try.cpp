@@ -1,6 +1,17 @@
 #include "Try.h"
+#include "Queue.h"
 #include <string>
 #include <iostream>
+
+//function for exception
+void exception_for_input()
+{
+	Queue &q = Queue::instance();
+	q.travel_to_file();
+	cout << "Information will be saved:)" << endl;
+	system("pause");
+	exit(1);
+}
 
 Try::Try()//: subject(NULL), num_of_question(0), variant(NULL), questions(nullptr)
 {
@@ -121,13 +132,52 @@ istream & Try::operator>>(istream & in)
 {
 	getline(in, subject);
 	in >> variant;
+	try
+	{
+		if (in.fail())
+		{
+			throw "error";
+		}
+	}
+	catch (char * error)
+	{
+		cout << error << endl;
+		exception_for_input();
+	}
 	in.ignore();
+	//
 	in >> num_of_question;
+	try
+	{
+		if (in.fail())
+		{
+			throw "error";
+		}
+	}
+	catch (char * error)
+	{
+		cout << error << endl;
+		exception_for_input();
+	}
+	//
 	in.ignore();
 	questions = new string[num_of_question];
 	for (int i = 0; i < num_of_question; i++)
 	{
 		getline(in >> ws, questions[i]);
+		try
+		{
+			if (in.fail())
+			{
+				throw "error";
+			}
+		}
+		catch (char * error)
+		{
+			cout << error << endl;
+			exception_for_input();
+		}
+
 	}
 	return in;
 }

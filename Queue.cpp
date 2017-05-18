@@ -104,27 +104,42 @@ void Queue::travel_to_file() const
 void Queue::read_from_file()
 {
 	ifstream fin("chapie.txt");
-	string id;
-	getline(fin, id);
-	while (!fin.eof())
+	if (fin)
 	{
-		if (id == "Exam")
-		{
-			Try *e = new Exam();
-			//*e >> fin;
-			fin >> e;
-			push(e);
-		}
-		else if (id == "Test")
-		{
-			Try *t = new Test();
-			//*t >> fin;
-			fin >> t;
-			push(t);
-		}
+		string id;
 		getline(fin, id);
+		while (!fin.eof())
+		{
+			if (id == "Exam")
+			{
+				Try *e = new Exam();
+				//*e >> fin;
+				fin >> e;
+				push(e);
+			}
+			else if (id == "Test")
+			{
+				Try *t = new Test();
+				//*t >> fin;
+				fin >> t;
+				push(t);
+			}
+			else
+			{
+				cout << "File was changed,  information will be saved:)" << endl;
+				travel_to_file();
+				break;
+			}
+			getline(fin, id);
+		}
+		fin.close();
 	}
-	fin.close();
+	else
+	{
+		cout << "File isn`t exist, information will be saved:)" << endl;
+		travel_to_file();
+	}
+	
 }
 
 void Queue::sort_queue()

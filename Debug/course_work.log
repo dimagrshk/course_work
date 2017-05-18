@@ -1,10 +1,9 @@
 ﻿  Try.cpp
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(14): warning C4018: '<': signed/unsigned mismatch
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(50): warning C4018: '<': signed/unsigned mismatch
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(82): warning C4018: '<': signed/unsigned mismatch
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(113): warning C4018: '<': signed/unsigned mismatch
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(128): warning C4018: '<': signed/unsigned mismatch
-  Queue.cpp
+c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(25): warning C4018: '<': signed/unsigned mismatch
+c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(61): warning C4018: '<': signed/unsigned mismatch
+c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(93): warning C4018: '<': signed/unsigned mismatch
+c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(124): warning C4018: '<': signed/unsigned mismatch
+c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(165): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
   Compiling...
   main.cpp
@@ -16,6 +15,7 @@ c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\test
 c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\test.cpp(112): warning C4018: '<': signed/unsigned mismatch
 c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\test.cpp(129): warning C4018: '<': signed/unsigned mismatch
 c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\test.cpp(149): warning C4018: '<': signed/unsigned mismatch
+  Queue.cpp
   Menu.cpp
 c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\menu.cpp(35): warning C4101: 'e': unreferenced local variable
   Exam.cpp

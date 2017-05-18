@@ -39,3 +39,5 @@ public:
 	friend ostream& operator<<(ostream& out, Try * & tr);
 	friend istream& operator>>(istream& in, Try * & tr);
 };
+
+void exception_for_input();
