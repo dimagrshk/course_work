@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #define Queue_h
 
 #include "Try.h"
@@ -7,39 +7,36 @@
 
 using namespace std;
 
-//typedef Try * Try *;
 
 struct Node
 {
-	Try * item;
-	struct Node * next;
+	Try * item;				// поле, що зберігає покажчик на базовий клас в вузлі
+	struct Node * next;		// покажчик на наступний вузол
 };
 
 class Queue
 {
 private:
 	
-	Node *front;
-	Node *rear;
-	//int items; // 
-	Queue(const Queue & q);//
-	Queue & operator=(const Queue & q);
-	Queue();
-	~Queue();
+	Node *front;			//покажчик на початок черги
+	Node *rear;				//покажчик на кінець черги
+	Queue(const Queue & q);//конструктор копіювання
+	Queue & operator=(const Queue & q);//оператор дорівнює
+	Queue();				// конструктор за замовчуванням
+	~Queue();				//деструктор
 public:
-	static Queue &instance()
+	static Queue &instance() //статична функція для повернення посиланя на статичний об'єкт
 	{
-		static Queue qe;
+		static Queue qe;	//статичний об'єкт
 		return qe;
 	}
-	bool isempty() const;
-	int counter() const;
-	bool push(Try * & item);
-	bool pop();
-	void travel() const;
-	void travel_to_file() const;
-	void read_from_file();
-	void sort_queue();
-	void query_queue(string subj);
-	Try	* operator[](int i) const;
+	bool isempty() const;	//перевірка на порожність контейнера
+	int counter() const;	//метод рахує кількітсь вузлів в черзі
+	bool push(Try * & item);//додавання вузла
+	bool pop();				//видалення вузла
+	void travel() const;	//виведення на екран об'єктів
+	void travel_to_file() const;//запис об'єктів в файл
+	void read_from_file();		//читання з файлу
+	void sort_queue();			//сортування черги
+	void query_queue(string subj);//запит для контейнера
 };

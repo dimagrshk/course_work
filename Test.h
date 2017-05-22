@@ -1,32 +1,27 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include "Try.h"
 
-struct test_content
+struct test_content		//структура описує відповіді для тестів
 {
-	string answer[4];
+	string answer[4];   // варіантів відповідей на тест завжди чотири
 };
 
 class Test : public Try
 {
 private:
-	test_content *works;
+	test_content *works;	// масив структур для збереження відповідей для тесту
 public:
 	//Construcors
 	Test(); //default
-	Test(string sub, string *str, unsigned int num, unsigned int var, test_content *arr);
+	Test(string sub, string *str, int num, int var, test_content *arr); // конструктор з параметрами
 	//Destructor
 	~Test();
 	//Methods
-	void set_question();
-	void set_answer(int i);
-	void show() const;
-	// file
-	void save_to_file() const;
-	void read_from_file(istream & in);
-	ostream& operator<<(ostream& out);
+	void set_question(); // перевизначений метод встановлення питань
+	void set_answer(int i); // метод встановлення відповідей
+	test_content * get_works(); //повертає покажчик на масив структур
+	void show() const; // перевизначений метод відображення вмісту об'єкту
+	ostream& operator<<(ostream& out); ///перевизначенні методи виводу та вводу в потік
 	istream& operator>>(istream& in);
-	// friends
-	friend ostream & operator<<(ostream & out, const Test & t);
-	friend istream & operator>>(istream & in, Test & t);
 };

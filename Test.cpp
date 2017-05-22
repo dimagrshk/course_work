@@ -1,11 +1,11 @@
 #include "Test.h"
 
-Test::Test()//: works(nullptr), Try()
+Test::Test()
 {
 	works = nullptr;
 }
 
-Test::Test(string sub, string *str, unsigned int num, unsigned int var, test_content *arr) : Try(sub, str, num, var)
+Test::Test(string sub, string *str, int num, int var, test_content *arr) : Try(sub, str, num, var)
 {
 	works = new test_content[num_of_question];
 	for (int i = 0; i < num; i++)
@@ -35,7 +35,8 @@ void Test::set_question()
 		cout << "question: ";
 		//cin >> question[i];
 		getline(cin >> ws, questions[i]);
-		cout << "> " << questions[i] << endl;
+
+		//cout << "> " << questions[i] << endl;
 		set_answer(i);
 	}
 }
@@ -52,6 +53,11 @@ void Test::set_answer(int i)
 		cout << "answer:";
 		getline(cin >> ws, works[i].answer[j], '\n');
 	}
+}
+
+test_content * Test::get_works()
+{
+	return works;
 }
 
 void Test::show() const
@@ -73,19 +79,6 @@ void Test::show() const
 	}
 }
 
-void Test::save_to_file() const // old method for saving
-{
-	fstream fout("chapie.txt", ios_base::app);
-	fout << "Test\n";
-	fout << *this; 
-	fout.close();
-}
-
-void Test::read_from_file(istream & in)
-{
-	in >> *this;
-}
-
 ostream & Test::operator<<(ostream & out) // new method for saving
 {
 	out << "Test" << endl;
@@ -98,10 +91,6 @@ ostream & Test::operator<<(ostream & out) // new method for saving
 			out << works[i].answer[j] << endl;
 		}
 	}
-	/*fstream fout("chapie.txt", ios_base::app);
-	fout << "Test" << "\n";
-	fout << *this;
-	fout.close();*/
 	return out;
 }
 
@@ -111,48 +100,24 @@ istream & Test::operator>>(istream & in)
 	works = new test_content[num_of_question];
 	for (int i = 0; i < num_of_question; i++)
 	{
-		//getline(in >> ws, questions[i]);
 		for (int j = 0; j < 4; j++)
 		{
 			getline(in >> ws, works[i].answer[j]);
-		}
-	}
-	return in;
-	//return in >> *this;
-}
-
-ostream & operator<<(ostream & out, const Test & t)
-{
-	out << t.subject << endl;
-	out << t.variant << endl;
-	out << t.num_of_question << endl;
-	for (int i = 0; i < t.num_of_question; i++)
-	{
-		out << t.questions[i] << endl;
-		for (int j = 0; j < 4; j++)
-		{
-			out << t.works[i].answer[j] << endl;
-		}
-	}
-	return out;
-}
-
-istream & operator>>(istream & in, Test & t)
-{
-	getline(in, t.subject);
-	in >> t.variant;
-	in.ignore();
-	in >> t.num_of_question;
-	in.ignore();
-	t.questions = new string[t.num_of_question];
-	t.works = new test_content[t.num_of_question];
-	for (int i = 0; i < t.num_of_question; i++)
-	{
-		getline(in >> ws, t.questions[i]);
-		for (int j = 0; j < 4; j++)
-		{
-			getline(in >> ws, t.works[i].answer[j]);
+			try
+			{
+				if (in.fail())
+				{
+					throw "error";
+				}
+			}
+			catch (char * error)
+			{
+				cout << error << endl;
+				exception_for_input();
+			}
 		}
 	}
 	return in;
 }
+
+

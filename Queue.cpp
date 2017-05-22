@@ -1,6 +1,5 @@
 #include "Queue.h"
-#include <iostream>
-#include <stdlib.h>
+
 
 Queue::Queue()
 {
@@ -94,7 +93,6 @@ void Queue::travel_to_file() const
 	tmp = front;
 	for (int i = 0; i < counter(); i++)
 	{
-		//*tmp->item << fout;
 		fout << tmp->item;
 		tmp = tmp->next;
 	}
@@ -114,7 +112,6 @@ void Queue::read_from_file()
 			if (id == "Exam")
 			{
 				Try *e = new Exam();
-				//*e >> fin;
 				fin >> e;
 				push(e);
 				check = true;
@@ -123,7 +120,6 @@ void Queue::read_from_file()
 			{
 
 				Try *t = new Test();
-				//*t >> fin;
 				fin >> t;
 				push(t);
 				check = true;
@@ -131,7 +127,6 @@ void Queue::read_from_file()
 			else
 			{
 				cout << "wrong line :(" << endl;
-				//travel_to_file();
 			}
 			getline(fin, id);
 		}
@@ -151,7 +146,7 @@ void Queue::sort_queue()
 	Node *tmp;
 	Try *test;
 	tmp = front;
-	int length = this->counter();
+	int length = counter();
 	for (int i = 0; i < length - 1; i++)
 	{
 		tmp = front;
@@ -183,13 +178,3 @@ void Queue::query_queue(string subj)
 	}
 }
 
-Try * Queue::operator[](int index) const
-{
-	Node *tmp;
-	tmp = front;
-	for (int i = 0; i <index ; i++)
-	{
-		tmp = tmp->next;
-	}
-	return tmp->item;
-}
