@@ -1,5 +1,2 @@
-﻿  Queue.cpp
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\queue.cpp(120): warning C4101: 'ex': unreferenced local variable
-c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\queue.cpp(140): warning C4101: 'ex': unreferenced local variable
-  course_work.vcxproj -> C:\Users\Dima\Documents\Visual Studio 2017\Projects\course_work\Debug\course_work.exe
+﻿  course_work.vcxproj -> C:\Users\Dima\Documents\Visual Studio 2017\Projects\course_work\Debug\course_work.exe
   course_work.vcxproj -> C:\Users\Dima\Documents\Visual Studio 2017\Projects\course_work\Debug\course_work.pdb (Partial PDB)

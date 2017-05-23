@@ -14,7 +14,7 @@ void Menu::Budy()
 {
 	int key;
 	Queue &q = Queue::instance();
-	char s[10];
+	char s[100];
 	do
 	{
 		system("cls");
@@ -29,7 +29,7 @@ void Menu::Budy()
 		std::cout << "<8>.Sort objects\n";
 		std::cout << "<9>.Do request\n";
 		std::cout << "<10>.Exit\n";
-		std::cin.getline(s, 10);
+		std::cin.getline(s, 100);
 		key = atoi(s);
 		switch (key)
 		{
@@ -142,6 +142,7 @@ void Menu::create_test(Queue & q)
 
 void Menu::show_queue(Queue & q)
 {
+	cout << "size queue: " << q.counter() << endl;
 	q.travel();
 }
 

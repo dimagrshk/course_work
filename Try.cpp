@@ -79,6 +79,8 @@ void Try::set_subject()
 
 void Try::set_question()
 {
+	//cin.clear();
+
 	if (questions != nullptr)
 	{
 		delete[] questions;
@@ -87,34 +89,48 @@ void Try::set_question()
 	for (int i = 0; i < num_of_question; i++)
 	{
 		cout << "question: ";
-		getline(cin >> ws, questions[i]);
+		getline(cin >> ws, questions[i], '\n');
 	}
 }
 
 void Try::set_num()
 {
+	//cin.clear();
+	//cin.ignore(INT_MAX);
 	cout << "number of question: ";
-	cin >> num_of_question;
-	while (cin.fail() || num_of_question <= 0)
+	char tmp_num[100];
+	cin.getline(tmp_num, 100);
+	num_of_question = atoi(tmp_num);
+	while (cin.fail() || num_of_question <= 0 || num_of_question >= 60)
 	{
-		cin.clear();
-		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		//cin.clear();
+		//cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout << "Not correct input, try again" << endl;
-		cin >> num_of_question;
+		cin.getline(tmp_num, 100);
+		num_of_question = atoi(tmp_num);
+		//cin.clear();
 	}
+	//num_of_question = int(tmp_num);
+	//cin.clear();
 }
 
 void Try::set_var()
 {
+	//cin.ignore(INT_MAX);
 	cout << "variant: ";
-	cin >> variant;
-	while (cin.fail() || variant <= 0)
+	char tmp_var[1000];
+	cin.getline(tmp_var, 1000);
+	variant = atoi(tmp_var);
+	while (cin.fail() || variant <= 0 || variant >= 30)
 	{
-		cin.clear();
-		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		//cin.clear();
+		//cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout << "Not correct input, try again" << endl;
-		cin >> variant;
+		cin.getline(tmp_var, 100);
+		variant = atoi(tmp_var);
+		//cin >> variant;
 	}
+	//cin.clear();
 }
 
 

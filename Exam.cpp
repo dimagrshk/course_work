@@ -1,5 +1,5 @@
 #include "Exam.h"
-#include "Exception.h"
+//#include "Exception.h"
 
 Exam::Exam()
 {
