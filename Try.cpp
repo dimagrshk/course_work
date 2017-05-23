@@ -1,17 +1,6 @@
 #include "Try.h"
 #include "Queue.h"
 
-#include <limits>
-
-//function for exception
-//void exception_for_input()
-//{
-//	Queue &q = Queue::instance();
-//	//q.travel_to_file();
-//	cout << "Information will be saved:)" << endl;
-//	//system("pause");
-//	exit(1);
-//}
 
 Try::Try()
 {
@@ -79,8 +68,6 @@ void Try::set_subject()
 
 void Try::set_question()
 {
-	//cin.clear();
-
 	if (questions != nullptr)
 	{
 		delete[] questions;
@@ -95,42 +82,30 @@ void Try::set_question()
 
 void Try::set_num()
 {
-	//cin.clear();
-	//cin.ignore(INT_MAX);
 	cout << "number of question: ";
-	char tmp_num[100];
-	cin.getline(tmp_num, 100);
-	num_of_question = atoi(tmp_num);
+	string tmp_num;
+	getline(cin, tmp_num);
+	num_of_question = atoi(tmp_num.c_str());
 	while (cin.fail() || num_of_question <= 0 || num_of_question >= 60)
 	{
-		//cin.clear();
-		//cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout << "Not correct input, try again" << endl;
-		cin.getline(tmp_num, 100);
-		num_of_question = atoi(tmp_num);
-		//cin.clear();
+		getline(cin, tmp_num);
+		num_of_question = atoi(tmp_num.c_str());
 	}
-	//num_of_question = int(tmp_num);
-	//cin.clear();
 }
 
 void Try::set_var()
 {
-	//cin.ignore(INT_MAX);
 	cout << "variant: ";
-	char tmp_var[1000];
-	cin.getline(tmp_var, 1000);
-	variant = atoi(tmp_var);
+	string tmp_var;
+	getline(cin, tmp_var);
+	variant = atoi(tmp_var.c_str());
 	while (cin.fail() || variant <= 0 || variant >= 30)
 	{
-		//cin.clear();
-		//cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout << "Not correct input, try again" << endl;
-		cin.getline(tmp_var, 100);
-		variant = atoi(tmp_var);
-		//cin >> variant;
+		getline(cin, tmp_var);
+		variant = atoi(tmp_var.c_str());
 	}
-	//cin.clear();
 }
 
 
@@ -150,7 +125,6 @@ void Try::show() const
 
 ostream & Try::operator<<(ostream & out)
 {
-	/////
 	out << subject << endl;
 	out << variant << endl;
 	out << num_of_question << endl;

@@ -1,2 +1,4 @@
-﻿  course_work.vcxproj -> C:\Users\Dima\Documents\Visual Studio 2017\Projects\course_work\Debug\course_work.exe
+﻿  Try.cpp
+c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(60): warning C4101: 'error': unreferenced local variable
+  course_work.vcxproj -> C:\Users\Dima\Documents\Visual Studio 2017\Projects\course_work\Debug\course_work.exe
   course_work.vcxproj -> C:\Users\Dima\Documents\Visual Studio 2017\Projects\course_work\Debug\course_work.pdb (Partial PDB)

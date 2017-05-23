@@ -67,9 +67,7 @@ istream & Exam::operator>>(istream & in)
 	this->Try::operator>>(in);
 	getline(in, type);
 	if (in.fail() || !(type != "verb" || type != "write"))
-	{
 		throw exception();
-	}
 	return in;
 }
 
