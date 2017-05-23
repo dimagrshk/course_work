@@ -1,4 +1,5 @@
 #include "Queue.h"
+#include "Exception.h"
 
 
 Queue::Queue()
@@ -112,7 +113,19 @@ void Queue::read_from_file()
 			if (id == "Exam")
 			{
 				Try *e = new Exam();
-				fin >> e;
+				try 
+				{
+					fin >> e;
+				}
+				catch (exception & ex)
+				{
+					cout << "Exception" << endl;
+					//delete e;
+					/*fin.clear();
+					getline(fin, id);
+					continue;*/
+					break;
+				}
 				push(e);
 				check = true;
 			}
@@ -120,14 +133,23 @@ void Queue::read_from_file()
 			{
 
 				Try *t = new Test();
-				fin >> t;
+				try
+				{
+					fin >> t;
+				}
+				catch (exception & ex)
+				{
+					cout << "Exception, file was changed" << endl;
+					delete t;
+					/*fin.clear();
+					getline(fin, id);
+					continue;*/
+					break;
+				}
 				push(t);
 				check = true;
 			}
-			else
-			{
-				cout << "wrong line, maybe header of object was changed. Do you want to continue? :(" << endl;
-			}
+			fin.clear();
 			getline(fin, id);
 		}
 		if (!check) cout << "nothing have been read :(" << endl;

@@ -1,5 +1,4 @@
 #include "Test.h"
-#include "Exception.h"
 
 Test::Test()
 {
@@ -104,18 +103,8 @@ istream & Test::operator>>(istream & in)
 		for (int j = 0; j < 4; j++)
 		{
 			getline(in >> ws, works[i].answer[j]);
-			try
-			{
-				if (in.fail())
-				{
-					throw "error";
-				}
-			}
-			catch (char * error)
-			{
-				cout << error << endl;
-				Exception::exception_for_input();
-			}
+			if (in.fail() || works[i].answer[j] == "" )
+				throw exception();
 		}
 	}
 	return in;

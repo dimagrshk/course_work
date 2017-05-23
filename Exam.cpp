@@ -66,17 +66,9 @@ istream & Exam::operator>>(istream & in)
 {
 	this->Try::operator>>(in);
 	getline(in, type);
-	try
+	if (in.fail() || !(type != "verb" || type != "write"))
 	{
-		if (in.fail() || !(type != "verb" || type != "write"))
-		{
-			throw "error";
-		}
-	}
-	catch (char * error)
-	{
-		cout << error << endl;
-		Exception::exception_for_input();
+		throw exception();
 	}
 	return in;
 }

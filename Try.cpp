@@ -1,6 +1,6 @@
 #include "Try.h"
 #include "Queue.h"
-#include "Exception.h"
+
 #include <limits>
 
 //function for exception
@@ -149,34 +149,18 @@ istream & Try::operator>>(istream & in)
 {
 	getline(in, subject);
 	in >> variant;
-	try
+	if (in.fail())
 	{
-		if (in.fail())
-		{
-			throw "error";
-		}
-	}
-	catch (char * error)
-	{
-		cout << error << endl;
-		Exception::exception_for_input();
-		return in;
+		in.ignore();
+		throw exception();
 	}
 	in.ignore();
 	//
 	in >> num_of_question;
-	try
+	if (in.fail())
 	{
-		if (in.fail())
-		{
-			throw "error";
-		}
-	}
-	catch (char * error)
-	{
-		cout << error << endl;
-		Exception::exception_for_input();
-		return in;
+		in.ignore();
+		throw exception();
 	}
 	//
 	in.ignore();
@@ -184,19 +168,10 @@ istream & Try::operator>>(istream & in)
 	for (int i = 0; i < num_of_question; i++)
 	{
 		getline(in >> ws, questions[i]);
-		try
+		if (in.fail())
 		{
-			if (in.fail())
-			{
-				throw "error";
-			}
+			throw exception();
 		}
-		catch (char * error)
-		{
-			cout << error << endl;
-			Exception::exception_for_input();
-		}
-
 	}
 	return in;
 }
