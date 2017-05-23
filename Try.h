@@ -22,8 +22,7 @@ public:
 	virtual int num_question(); //метод для повернення значення кількості питань
 	virtual string get_subject(); //метод для повернення теми випробування
 	virtual string * get_question(); //метод для повернення покажчика на масив питань
-	virtual int get_variant(); //метод для повернення значення питання
-
+	virtual int get_variant(); //метод для повернення значення варіанту
 	virtual void set_subject(); //метод для встановлення теми
 	virtual void set_question();//метод для встановлення питань
 	virtual void set_num();		//метод для встановлення кількості питань
@@ -39,4 +38,4 @@ public:
 	friend istream& operator>>(istream& in, Try * & tr);  ////перевантаження оперції >>, як дружня ф-ція
 };
 
-void exception_for_input();
+//void exception_for_input();

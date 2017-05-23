@@ -126,7 +126,7 @@ void Queue::read_from_file()
 			}
 			else
 			{
-				cout << "wrong line :(" << endl;
+				cout << "wrong line, maybe header of object was changed. Do you want to continue? :(" << endl;
 			}
 			getline(fin, id);
 		}

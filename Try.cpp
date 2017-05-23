@@ -1,16 +1,17 @@
 #include "Try.h"
 #include "Queue.h"
+#include "Exception.h"
 #include <limits>
 
 //function for exception
-void exception_for_input()
-{
-	Queue &q = Queue::instance();
-	//q.travel_to_file();
-	cout << "Information will be saved:)" << endl;
-	//system("pause");
-	exit(1);
-}
+//void exception_for_input()
+//{
+//	Queue &q = Queue::instance();
+//	//q.travel_to_file();
+//	cout << "Information will be saved:)" << endl;
+//	//system("pause");
+//	exit(1);
+//}
 
 Try::Try()
 {
@@ -158,7 +159,7 @@ istream & Try::operator>>(istream & in)
 	catch (char * error)
 	{
 		cout << error << endl;
-		exception_for_input();
+		Exception::exception_for_input();
 		return in;
 	}
 	in.ignore();
@@ -174,7 +175,7 @@ istream & Try::operator>>(istream & in)
 	catch (char * error)
 	{
 		cout << error << endl;
-		exception_for_input();
+		Exception::exception_for_input();
 		return in;
 	}
 	//
@@ -193,7 +194,7 @@ istream & Try::operator>>(istream & in)
 		catch (char * error)
 		{
 			cout << error << endl;
-			exception_for_input();
+			Exception::exception_for_input();
 		}
 
 	}

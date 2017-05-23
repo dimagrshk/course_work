@@ -1,5 +1,5 @@
 #include "Exam.h"
-
+#include "Exception.h"
 
 Exam::Exam()
 {
@@ -76,7 +76,7 @@ istream & Exam::operator>>(istream & in)
 	catch (char * error)
 	{
 		cout << error << endl;
-		exception_for_input();
+		Exception::exception_for_input();
 	}
 	return in;
 }
