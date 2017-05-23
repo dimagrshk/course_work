@@ -1,19 +1,17 @@
 #include "Queue.h"
-#include <iostream>
-#include <stdlib.h>
+#include "Exception.h"
+
 
 Queue::Queue()
 {
 	front = rear = nullptr;
-	items = 0;
 }
 //add in queue
-bool Queue::enqueue(const Item & item)
+bool Queue::push(Try * & item)
 {
 	Node * add = new Node;
 	add->item = item;
 	add->next = nullptr;
-	items++;
 	if (front == nullptr)
 		front = add;
 	else
@@ -22,18 +20,17 @@ bool Queue::enqueue(const Item & item)
 	return true;
 }
 //delete form queue
-bool Queue::dequeue()
+bool Queue::pop()
 {
-	Item item;
+	Try * item;
 	if (isempty())
 		return false;
 	item = front->item;
-	items--;
 	Node * temp = front;
 	front = front->next;
 	delete temp->item;
 	delete temp;
-	if (items == 0)
+	if (counter() == 0)
 		rear = nullptr;
 	return true;
 }
@@ -51,74 +48,155 @@ Queue::~Queue()
 
 bool Queue::isempty() const
 {
-	return items == 0;
+	return counter() == 0;
 }
 
 
 
-int Queue::queue_counter() const
+
+int Queue::counter() const
 {
-	return items;
+	int count = 0;
+	if (front == nullptr)
+	{
+		return count;
+	}
+	else
+	{
+		Node * temp;
+		temp = front;
+		count++;
+		while (temp != rear)
+		{
+			temp = temp->next;
+			count++;
+		}
+		return count;
+	}
 }
 
 void Queue::travel() const
 {
 	Node *tmp;
 	tmp = front;
-	for (int i = 0; i < items; i++)
+	int length = this->counter();
+	for (int i = 0; i < length; i++)
 	{
 		tmp->item->show();
 		tmp = tmp->next;
 	}
 }
 
-//void Queue::travel_to_file() const
-//{
-//	Node *tmp;
-//	tmp = front;
-//	for (int i = 0; i < items; i++)
-//	{
-//		tmp->item->save_to_file();
-//		tmp = tmp->next;
-//	}
-//}
+void Queue::travel_to_file() const
+{
+	ofstream fout("chapie.txt");
+	Node *tmp;
+	tmp = front;
+	for (int i = 0; i < counter(); i++)
+	{
+		fout << tmp->item;
+		tmp = tmp->next;
+	}
+	fout.close();
+}
 
-//void Queue::read_from_file()
-//{
-//	ifstream fin("chapie.txt");
-//	//Exam *e;
-//	//Test *t;
-//	
-//	//Try *t = new Test("", nullptr, 0, '\0', nullptr);
-//	string id;
-//	getline(fin, id);
-//	while (!fin.eof())
-//	{
-//		if (id == "Exam")
-//		{
-//			Exam *e = new Exam();
-//			fin >> (*e);
-//			enqueue(e);
-//			//delete e;
-//		}
-//		else if (id == "Test")
-//		{
-//			Test *t = new Test();
-//			fin >> (*t);
-//			enqueue(t);
-//		}
-//		getline(fin, id);
-//	}
-//	fin.close();
-//}
+void Queue::read_from_file()
+{
+	ifstream fin("chapie.txt");
+	if (fin)
+	{
+		bool check = false;
+		string id;
+		getline(fin, id);
+		while (!fin.eof())
+		{
+			if (id == "Exam")
+			{
+				Try *e = new Exam();
+				try 
+				{
+					fin >> e;
+				}
+				catch (exception & ex)
+				{
+					cout << "Exception" << endl;
+					//delete e;
+					/*fin.clear();
+					getline(fin, id);
+					continue;*/
+					break;
+				}
+				push(e);
+				check = true;
+			}
+			else if (id == "Test")
+			{
 
-Try * Queue::operator[](int index) const
+				Try *t = new Test();
+				try
+				{
+					fin >> t;
+				}
+				catch (exception & ex)
+				{
+					cout << "Exception, file was changed. Please rewrite to file the list of Tryes" << endl;
+					delete t;
+					/*fin.clear();
+					getline(fin, id);
+					continue;*/
+					break;
+				}
+				push(t);
+				check = true;
+			}
+			fin.clear();
+			getline(fin, id);
+		}
+		if (!check) cout << "nothing have been read :(" << endl;
+		fin.close();
+	}
+	else
+	{
+		cout << "File isn`t exist, information will be saved:)" << endl;
+		travel_to_file();
+	}
+	
+}
+
+void Queue::sort_queue()
+{
+	Node *tmp;
+	Try *test;
+	tmp = front;
+	int length = counter();
+	for (int i = 0; i < length - 1; i++)
+	{
+		tmp = front;
+		for (int j = 0; j < length - i - 1; j++)
+		{
+			if (tmp->item->get_subject() > tmp->next->item->get_subject())
+			{
+				test = tmp->item;//				swap-algorithm
+				tmp->item = tmp->next->item;//
+				tmp->next->item = test;//
+			}
+			tmp = tmp->next;// travel to other elements
+		}
+	}
+}
+
+void Queue::query_queue(string subj)
 {
 	Node *tmp;
 	tmp = front;
-	for (int i = 0; i <index ; i++)
+	int length = this->counter();
+	for (int i = 0; i < length; i++)
 	{
+		if (tmp->item->get_subject() == subj)
+		{
+			tmp->item->show();
+		}
 		tmp = tmp->next;
 	}
-	return tmp->item;
 }
+
