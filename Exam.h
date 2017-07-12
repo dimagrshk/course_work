@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿/*Грішко Дмитро БС-51
+Визначення класу Exam*/
 #define Exam_h_
 #include <iostream>
 #include "Try.h"
@@ -17,9 +18,9 @@ public:
 	//Methods
 	void set_question(); // перевизначений метод встановлення питань
 	void set_type(); // метод встановлення відповідей
-	string get_type(); // метод повернення типу екзамену
+	string get_type() const; // метод повернення типу екзамену
 	void show() const; // перевизначений метод відображення вмісту об'єкту
 	// to file
-	ostream& operator<<(ostream& out); ///перевизначенні методи виводу в потік
+	ostream& operator<<(ostream& out) const; ///перевизначенні методи виводу в потік
 	istream& operator>>(istream& in);
 };

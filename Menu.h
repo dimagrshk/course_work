@@ -1,16 +1,14 @@
-﻿#ifndef Menu_h
+﻿/*Грішко Дмитро БС-51
+Визначення класу Menu*/
+#ifndef Menu_h
 #define Menu_h
 
 #include "Queue.h"
 
 class Menu {
 private:
-	Menu() {			// конструктор за замовчуванням
-
-	}
-	~Menu() {			//деструктор
-
-	}
+	Menu();			// конструктор за замовчування
+	~Menu();			//деструктор
 	Menu(const Menu& m);//конструктор копіювання
 	Menu& operator=(Menu const& m);//оператор дорівнює
 public:

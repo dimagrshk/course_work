@@ -1,12 +1,15 @@
+﻿/*Грішко Дмитро БС-51
+Визначення методів класу Try*/
 #include "Try.h"
-#include "Queue.h"
 
-
+//--------------------------------------
+//Конструктор за замовчуванням класу Try
 Try::Try()
 {
 	questions = nullptr;
 }
-
+//--------------------------------------
+//Конструктор з параметрами класу Try
 
 Try::Try(string sub, string *str, int num, int var) : subject(sub), num_of_question(num), variant(var)
 {
@@ -18,32 +21,38 @@ Try::Try(string sub, string *str, int num, int var) : subject(sub), num_of_quest
 }
 
 
-
+//--------------------------------------
+//Деструктор класу Try
 Try::~Try()
 {
 	delete[] questions;
 }
-
-int Try::num_question()
+//--------------------------------------
+//метод отримання значення поля num_of_question
+int Try::num_question() const
 {
 	return num_of_question;
 }
-
-string Try::get_subject()
+//--------------------------------------
+//метод отримання значення поля subject
+string Try::get_subject() const
 {
 	return subject;
 }
-
-string * Try::get_question()
+//--------------------------------------
+//метод отримання покажчика на масив questions
+string * Try::get_question() const
 {
 	return questions;
 }
-
-int Try::get_variant()
+//--------------------------------------
+//метод отримання значення поля variant
+int Try::get_variant() const
 {
-	return 0;
+	return variant;
 }
-
+//--------------------------------------
+//метод задання значення поля subject
 void Try::set_subject()
 {
 	while (true)
@@ -65,7 +74,8 @@ void Try::set_subject()
 		break;
 	}
 }
-
+//--------------------------------------
+//метод задання значення поля questions
 void Try::set_question()
 {
 	if (questions != nullptr)
@@ -79,7 +89,8 @@ void Try::set_question()
 		getline(cin >> ws, questions[i], '\n');
 	}
 }
-
+//--------------------------------------
+//метод задання значення поля num_of_question
 void Try::set_num()
 {
 	cout << "number of question: ";
@@ -93,7 +104,8 @@ void Try::set_num()
 		num_of_question = atoi(tmp_num.c_str());
 	}
 }
-
+//--------------------------------------
+//метод задання значення поля variant
 void Try::set_var()
 {
 	cout << "variant: ";
@@ -107,9 +119,8 @@ void Try::set_var()
 		variant = atoi(tmp_var.c_str());
 	}
 }
-
-
-
+//--------------------------------------
+//метод виведення на екран полів  базового класу
 void Try::show() const
 {
 	cout << "subject: " << subject << endl;
@@ -120,10 +131,9 @@ void Try::show() const
 		cout << questions[i] << endl;
 	}
 }
-
-
-
-ostream & Try::operator<<(ostream & out)
+//--------------------------------------
+//Перевантаження операції << (побітового зміщення вліво) для класу Try, як віртуальний метод
+ostream & Try::operator<<(ostream & out) const
 {
 	out << subject << endl;
 	out << variant << endl;
@@ -134,7 +144,8 @@ ostream & Try::operator<<(ostream & out)
 	}
 	return out;
 }
-
+//--------------------------------------
+//Перевантаження операції >> (побітового зміщення вправо) для класу Try, як віртуальний метод	
 istream & Try::operator>>(istream & in)
 {
 	getline(in, subject);
@@ -165,15 +176,15 @@ istream & Try::operator>>(istream & in)
 	}
 	return in;
 }
-
-
-
+//--------------------------------------
+//Перевантаження операції << (побітового зміщення вліво) для класу Try, як дружня функція
 ostream & operator<<(ostream & out, Try * & tr)
 {
 	*tr << out;
 	return out;
 }
-
+//--------------------------------------
+//Перевантаження операції >>(побітового зміщення вправо) для класу Try, як дружня функція
 istream & operator>>(istream & in, Try *& tr)
 {
 	*tr >> in;

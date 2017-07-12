@@ -1,4 +1,6 @@
-﻿#pragma once
+﻿/*Грішко Дмитро БС-51
+Визначення класу Queue*/
+#pragma once
 #define Queue_h
 
 #include "Try.h"
@@ -37,6 +39,6 @@ public:
 	void travel() const;	//виведення на екран об'єктів
 	void travel_to_file() const;//запис об'єктів в файл
 	void read_from_file();		//читання з файлу
-	void sort_queue();			//сортування черги
-	void query_queue(string subj);//запит для контейнера
+	void sort_queue() const;			//сортування черги
+	void query_queue(string subj) const;//запит для контейнера
 };

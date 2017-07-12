@@ -1,6 +1,74 @@
+Test
+numerical methods
+1
+2
+how much
+in wich year?
+2
+3
+4
+5
+1997
+1998
+2018
+2000
 Exam
-frt
+oop
+1
+1
+stl
+verb
+Exam
+signals
+4
+2
+ACF
+FCH
+verb
+Exam
+math
+17
+2
+difer
+equals
+write
+Exam
+bio
+8
+1
+DNA
+write
+Exam
+discret math
+3
+1
+boolean
+write
+Exam
+history
+17
+1
+when
+write
+Exam
+history
+1
+2
+why
+what was before
+write
+Test
+physic
+18
+1
+when was born Galileo
+a
+b
+c
+d
+Exam
+physic
 2
 1
-jio
+heat
 write

@@ -1,4 +1,6 @@
-﻿#pragma once
+﻿/*Грішко Дмитро БС-51
+Визначення класу Test*/
+#pragma once
 #include <iostream>
 #include "Try.h"
 
@@ -20,8 +22,8 @@ public:
 	//Methods
 	void set_question(); // перевизначений метод встановлення питань
 	void set_answer(int i); // метод встановлення відповідей
-	test_content * get_works(); //повертає покажчик на масив структур
+	test_content * get_works() const; //повертає покажчик на масив структур
 	void show() const; // перевизначений метод відображення вмісту об'єкту
-	ostream& operator<<(ostream& out); ///перевизначенні методи виводу та вводу в потік
+	ostream& operator<<(ostream& out) const; ///перевизначенні методи виводу та вводу в потік
 	istream& operator>>(istream& in);
 };

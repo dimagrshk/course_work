@@ -1,20 +1,23 @@
+﻿/*Грішко Дмитро БС-51
+Визначення методів класу Menu*/
+
 #include "Menu.h"
 
-void init_fields(Try * item, Queue &q)
+Menu::Menu()
 {
-	item->set_subject();
-	item->set_var();
-	item->set_num();
-	item->set_question();
-	q.push(item);
 }
 
+Menu::~Menu()
+{
+}
 
+//--------------------------------------
+//Метод для реалізації інтерфейсу користувача
 void Menu::Budy()
 {
 	int key;
 	Queue &q = Queue::instance();
-	char s[100];
+	string s;
 	do
 	{
 		system("cls");
@@ -29,8 +32,8 @@ void Menu::Budy()
 		std::cout << "<8>.Sort objects\n";
 		std::cout << "<9>.Do request\n";
 		std::cout << "<10>.Exit\n";
-		std::cin.getline(s, 100);
-		key = atoi(s);
+		getline(cin, s);
+		key = atoi(s.c_str());
 		switch (key)
 		{
 		
@@ -58,6 +61,7 @@ void Menu::Budy()
 			system("cls");
 			std::cout << "<3>\n";
 			remove_queue(q);
+			cout << "All objects were deleted" << endl;
 			system("pause");
 			break;
 		}
@@ -90,6 +94,7 @@ void Menu::Budy()
 			system("cls");
 			std::cout << "<7>\n";
 			q.read_from_file();
+			cout << "Reading from file complete" << endl;
 			system("pause");
 			break;
 		}
@@ -120,32 +125,45 @@ void Menu::Budy()
 		{
 			if (key > 10 || key < 1)
 			{
-				std::cout << "Try again)\n\n";
+				std::cout << "Try again)\n";
+				system("pause");
 			}
 			break;
 		}
 		}
 	} while (key != 10);
 }
-
+//--------------------------------------
+//Створення об’єкту класу Exam та завантаження його в контейнер
 void Menu::create_exam(Queue & q)
 {
 	Try *e = new Exam();
-	init_fields(e, q);
+	e->set_subject();
+	e->set_var();
+	e->set_num();
+	e->set_question();
+	q.push(e);
 }
-
+//--------------------------------------
+//Створення об’єкту класу Test та завантаження його в контейнер
 void Menu::create_test(Queue & q)
 {
 	Try *t = new Test();
-	init_fields(t, q);
+	t->set_subject();
+	t->set_var();
+	t->set_num();
+	t->set_question();
+	q.push(t);
 }
-
+//--------------------------------------
+//Виведення на екран об’єктів контейнера
 void Menu::show_queue(Queue & q)
 {
 	cout << "size queue: " << q.counter() << endl;
 	q.travel();
 }
-
+//--------------------------------------
+//Видалення об’єктів з контейнера
 void Menu::remove_queue(Queue & q)
 {
 	cout << "Deleting queue: " << endl;
@@ -153,13 +171,14 @@ void Menu::remove_queue(Queue & q)
 	for (int i = 0; i < length; i++)
 		q.pop();
 }
-
+//--------------------------------------
+//Сортування об’єктів контейнера
 void Menu::sort(Queue &q)
 {
-
 	q.sort_queue();
 }
-
+//--------------------------------------
+//Виконання запиту за темою предмету
 void Menu::query(Queue & q)
 {
 	string tmp;

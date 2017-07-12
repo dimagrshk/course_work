@@ -1,12 +1,15 @@
+﻿/*Грішко Дмитро БС-51
+Визначення методів класу Queue*/
 #include "Queue.h"
-//#include "Exception.h"
 
-
-Queue::Queue()
+//--------------------------------------
+//Конструктор за замовчуванням
+Queue::Queue(): front(nullptr), rear(nullptr)
 {
 	front = rear = nullptr;
 }
-//add in queue
+//--------------------------------------
+//Додає елемент в чергу
 bool Queue::push(Try * & item)
 {
 	Node * add = new Node;
@@ -19,22 +22,34 @@ bool Queue::push(Try * & item)
 	rear = add;
 	return true;
 }
-//delete form queue
+//--------------------------------------
+//Видаляє елемент з черги
 bool Queue::pop()
 {
-	Try * item;
-	if (isempty())
+	if (!isempty())
+	{
+		Try * item;
+		if (isempty())
+			return false;
+		item = front->item;
+		Node * temp = front;
+		front = front->next;
+		delete temp->item;
+		delete temp;
+		if (counter() == 0)
+			rear = nullptr;
+		cout << "Object was removed" << endl;
+		return true;
+	}
+	else
+	{
+		cout << "Queue is empty" << endl;
 		return false;
-	item = front->item;
-	Node * temp = front;
-	front = front->next;
-	delete temp->item;
-	delete temp;
-	if (counter() == 0)
-		rear = nullptr;
-	return true;
+	}
+	
 }
-
+//--------------------------------------
+//Деструктор класу
 Queue::~Queue()
 {
 	Node * temp;
@@ -45,15 +60,14 @@ Queue::~Queue()
 		delete temp;
 	}
 }
-
+//--------------------------------------
+//Перевіряє чи пустий контейнер
 bool Queue::isempty() const
 {
-	return counter() == 0;
+	return front == nullptr;
 }
-
-
-
-
+//--------------------------------------
+//Підраховує скільки елементів на даний час в черзі
 int Queue::counter() const
 {
 	int count = 0;
@@ -74,32 +88,52 @@ int Queue::counter() const
 		return count;
 	}
 }
-
+//--------------------------------------
+//Виводить дані об’єктів з черги на екран
 void Queue::travel() const
 {
-	Node *tmp;
-	tmp = front;
-	int length = this->counter();
-	for (int i = 0; i < length; i++)
+	if (!isempty())
 	{
-		tmp->item->show();
-		tmp = tmp->next;
+		Node *tmp;
+		tmp = front;
+		int length = this->counter();
+		for (int i = 0; i < length; i++)
+		{
+			tmp->item->show();
+			tmp = tmp->next;
+		}
 	}
+	else
+		cout << "Queue is empty" << endl;
+	
 }
-
+//--------------------------------------
+//Метод запису вмісту контейнера в файл
 void Queue::travel_to_file() const
 {
 	ofstream fout("chapie.txt");
-	Node *tmp;
-	tmp = front;
-	for (int i = 0; i < counter(); i++)
+	if (fout)
 	{
-		fout << tmp->item;
-		tmp = tmp->next;
+		if (!isempty())
+		{
+			Node *tmp;
+			tmp = front;
+			for (int i = 0; i < counter(); i++)
+			{
+				fout << tmp->item;
+				tmp = tmp->next;
+			}
+			fout.close();
+			cout << "Objects was saved to file" << endl;
+		}
+		else
+			cout << "Conteiner is empty" << endl;
 	}
-	fout.close();
+	else
+		cout << "File didn`t open" << endl;
 }
-
+//--------------------------------------
+//Метод читання об’єктів з файлу
 void Queue::read_from_file()
 {
 	ifstream fin("chapie.txt");
@@ -120,10 +154,7 @@ void Queue::read_from_file()
 				catch (exception & ex)
 				{
 					cout << "Exception" << endl;
-					//delete e;
-					/*fin.clear();
-					getline(fin, id);
-					continue;*/
+					delete e;
 					break;
 				}
 				push(e);
@@ -141,9 +172,6 @@ void Queue::read_from_file()
 				{
 					cout << "Exception, file was changed" << endl;
 					delete t;
-					/*fin.clear();
-					getline(fin, id);
-					continue;*/
 					break;
 				}
 				push(t);
@@ -162,30 +190,38 @@ void Queue::read_from_file()
 	}
 	
 }
-
-void Queue::sort_queue()
+//--------------------------------------
+//Метод сортуваня об’єктів контейнера
+void Queue::sort_queue() const
 {
-	Node *tmp;
-	Try *test;
-	tmp = front;
-	int length = counter();
-	for (int i = 0; i < length - 1; i++)
+	if (!isempty())
 	{
+		Node *tmp;
+		Try *test;
 		tmp = front;
-		for (int j = 0; j < length - i - 1; j++)
+		int length = counter();
+		for (int i = 0; i < length - 1; i++)
 		{
-			if (tmp->item->get_subject() > tmp->next->item->get_subject())
+			tmp = front;
+			for (int j = 0; j < length - i - 1; j++)
 			{
-				test = tmp->item;//				swap-algorithm
-				tmp->item = tmp->next->item;//
-				tmp->next->item = test;//
+				if (tmp->item->get_subject() > tmp->next->item->get_subject())
+				{
+					test = tmp->item;//				swap-algorithm
+					tmp->item = tmp->next->item;//
+					tmp->next->item = test;//
+				}
+				tmp = tmp->next;// travel to other elements
 			}
-			tmp = tmp->next;// travel to other elements
 		}
+		cout << "Sorting complete" << endl;
 	}
+	else
+		cout << "Queue is empty" << endl;
 }
-
-void Queue::query_queue(string subj)
+//--------------------------------------
+//Метод пошуку об’єктів за заданою темою
+void Queue::query_queue(string subj) const
 {
 	Node *tmp;
 	tmp = front;
