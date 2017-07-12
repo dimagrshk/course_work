@@ -1,37 +1,58 @@
+﻿/*Грішко Дмитро БС-51
+Визначення методів класу Exam*/
 #include "Exam.h"
-#include <string>
-#include <iostream>
 
-Exam::Exam()//:type(""), Try()
+//--------------------------------------
+//Конструктор за замовчуванням
+Exam::Exam()
 {
 }
-
-Exam::Exam(string sub, string *str, unsigned int num, char var, string typ) : Try(sub, str, num, var)
+//--------------------------------------
+//Конструктор з параметрами
+Exam::Exam(string sub, string *str, int num, int var, string typ) : Try(sub, str, num, var), type(typ)
 {
-	type = typ;
+	//type = typ;
 }
-
+//--------------------------------------
+//Деструктор
 Exam::~Exam()
 {
 }
-
+//--------------------------------------
+//перевизначений метод встановлення питань
 void Exam::set_question()
 {
 	Try::set_question();
 	set_type();
 }
-
+//--------------------------------------
+//метод встановлення типу екзамену
 void Exam::set_type()
 {
-	cout << "Verb - 1, or write - 0?" << endl;
+	cout << "Verb - 1, or write - 2?" << endl;
+	string choice_tmp;
 	int choice;
-	cin >> choice;
-	if (choice)
+	getline(cin, choice_tmp);
+	choice = atoi(choice_tmp.c_str());
+	while (cin.fail() || choice < 1 || choice >2)
+	{
+		cout << "Not correct input, try again" << endl;
+		getline(cin, choice_tmp);
+		choice = atoi(choice_tmp.c_str());
+	}
+	if (choice == 1)
 		type = "verb";
-	else
+	else if (choice == 2)
 		type = "write";
 }
-
+//--------------------------------------
+//метод отримання типу екзамену
+string Exam::get_type() const
+{
+	return type;
+}
+//--------------------------------------
+//Константний метод для виведення на екран вмісту об’єкта класу Exam
 void Exam::show() const
 {
 	using std::cout;
@@ -39,48 +60,23 @@ void Exam::show() const
 	Try::show();
 	cout << "type: " << type << endl;
 }
-
-void Exam::save_to_file() const
+//--------------------------------------
+//Перевантаження операції << (побітового зміщення вліво) для класу Exam, як метод класу
+ostream & Exam::operator<<(ostream & out) const // new method for saving
 {
-	fstream fout("chapie.txt", ios_base::app);
-	fout << "Exam" << "\n";
-	fout << *this;
-	/*fout << "For exam: \n";
-	fout << "subject: " << subject << endl;
-	fout << "variant: " << variant << endl;
-	fout << "number of question: " << num_of_question << endl;
-	for (int i = 0; i < num_of_question; i++)
-	{
-		fout << questions[i] << endl;
-	}*/
-	fout.close();
-}
-
-ostream & operator<<(ostream & out, const Exam & e)
-{
-	out << e.subject << endl;
-	out << e.variant << endl;
-	out << e.num_of_question << endl;
-	for (int i = 0; i < e.num_of_question; i++)
-	{
-		out << e.questions[i] << endl;
-	}
-	out << e.type << endl;
+	out << "Exam" << endl;
+	this->Try::operator<<(out);
+	out << type << endl;
 	return out;
 }
-
-istream & operator>>(istream & in, Exam & e)
+//--------------------------------------
+//Перевантаження операції >> (побітового зміщення вправо) для класу Exam, як метод класу
+istream & Exam::operator>>(istream & in)
 {
-	getline(in, e.subject);
-	in >> e.variant;
-	in.ignore();
-	in >> e.num_of_question;
-	in.ignore();
-	e.questions = new string[e.num_of_question];
-	for (int i = 0; i < e.num_of_question; i++)
-	{
-		getline(in>>ws, e.questions[i]);
-	}
-	getline(in, e.type);
+	this->Try::operator>>(in);
+	getline(in, type);
+	if (in.fail() || !(type != "verb" || type != "write"))
+		throw exception();
 	return in;
 }
+

@@ -1,0 +1,12 @@
+﻿  main.cpp
+  Try.cpp
+c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\try.cpp(69): warning C4101: 'error': unreferenced local variable
+  Test.cpp
+  Queue.cpp
+c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\queue.cpp(154): warning C4101: 'ex': unreferenced local variable
+c:\users\dima\documents\visual studio 2017\projects\course_work\course_work\queue.cpp(171): warning C4101: 'ex': unreferenced local variable
+  Menu.cpp
+  Exam.cpp
+  Generating Code...
+  course_work.vcxproj -> C:\Users\Dima\documents\visual studio 2017\Projects\course_work\Debug\course_work.exe
+  course_work.vcxproj -> C:\Users\Dima\documents\visual studio 2017\Projects\course_work\Debug\course_work.pdb (Partial PDB)

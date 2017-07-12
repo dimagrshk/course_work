@@ -1,69 +1,30 @@
+﻿/*Грішко Дмитро БС-51
+Визначення методів класу Menu*/
+
 #include "Menu.h"
-#include "Queue.h"
-#include <fstream>
 
-void init_fields(Try * item, Queue &q)
+Menu::Menu()
 {
-	item->set_subject();
-	item->set_var();
-	item->set_num();
-	item->set_question();
-	// can exist in other method
-	//e->set_type();
-	q.enqueue(item);
-	//cout << "subject: ";
-	////cin >> *subj;
-	//getline(cin, *subj, '\n');
-	//cout << "variant: ";
-	//cin >> *var;
-	//cout << "number of question: ";
-	//cin >> *num;
 }
 
-void save_to_file(Queue &q)
+Menu::~Menu()
 {
-	ofstream fout("chapie.txt");
-	fout.close();
-	for (int i = 0; i < q.queue_counter(); i++)
-		q[i]->save_to_file();
 }
 
-void read_from_file(Queue &q)
-{
-	ifstream fin("chapie.txt");
-	string id;
-	getline(fin, id);
-	while (!fin.eof())
-	{
-		if (id == "Exam")
-		{
-			Exam *e = new Exam();
-			fin >> (*e);
-			q.enqueue(e);
-		}
-		else if (id == "Test")
-		{
-			Test *t = new Test();
-			fin >> (*t);
-			q.enqueue(t);
-		}
-		getline(fin, id);
-	}
-	fin.close();
-}
-
+//--------------------------------------
+//Метод для реалізації інтерфейсу користувача
 void Menu::Budy()
 {
 	int key;
-	Queue q;
-	char s[10];
+	Queue &q = Queue::instance();
+	string s;
 	do
 	{
 		system("cls");
 		std::cout << "=========== MENU ===========" << std::endl;
 		std::cout << "<1>.Create 'Test' object\n";
 		std::cout << "<2>.Create 'Exam' object\n";
-		std::cout << "<3>.Create 'Try' object\n";
+		std::cout << "<3>.Delete queue\n";
 		std::cout << "<4>.Show the queue\n";
 		std::cout << "<5>.Remove form the queue\n";
 		std::cout << "<6>.Save to the file\n";
@@ -71,8 +32,8 @@ void Menu::Budy()
 		std::cout << "<8>.Sort objects\n";
 		std::cout << "<9>.Do request\n";
 		std::cout << "<10>.Exit\n";
-		std::cin.getline(s, 10);
-		key = atoi(s);
+		getline(cin, s);
+		key = atoi(s.c_str());
 		switch (key)
 		{
 		
@@ -82,31 +43,7 @@ void Menu::Budy()
 			std::cout << "<1>\n";
 			cout << "Creating Test: " << endl;
 			create_test(q);
-			//char variant;
-			//string subject;
-			//unsigned int num_of_question;
-			//init_fields(&subject, &num_of_question, &variant);
-			//string *question = new string[num_of_question];
-			//test_content *works = new test_content[num_of_question];
-			//for (int i = 0; i < num_of_question; i++)
-			//{
-			//	cout << "question:";
-			//	getline(cin>>ws, question[i], '\n');
-			//	//cout << "\n";
-			//	for (int j = 0; j < 4; j++)
-			//	{
-			//		cout << "answer:";
-			//		//cin >> works[i].answer[j];
-			//		//cin.ignore();
-			//		getline(cin>>ws, works[i].answer[j], '\n');
-			//		//cin.clear(); 
-			//		//cout << "\n";
-			//	}
-			//}
-			//Try *tmp = new Test(subject, question, num_of_question, variant, works);
-			//q.enqueue(tmp);
-			//delete[] question;
-			//delete[] works;
+			
 			system("pause");
 			break;
 		}
@@ -116,29 +53,6 @@ void Menu::Budy()
 			std::cout << "<2>\n"; 
 			cout << "Creating Exam: " << endl;
 			create_exam(q);
-			//char variant;
-			//string subject, type;
-			//unsigned int num_of_question;
-			//init_fields(&subject, &num_of_question, &variant);
-			//string *question = new string[num_of_question];
-			//for (int i = 0; i < num_of_question; i++)
-			//{
-			//	cout << "question: ";
-			//	//cin >> tmp_q[i];
-			//	//cin.ignore();
-			//	getline(cin>>ws, question[i]);
-			//	cout << "> " << question[i] << endl;
-			//}
-			//cout << "Verb or write?" << endl;
-			//int choice;
-			//cin >> choice;
-			//if (choice)
-			//	type = "verb";
-			//else
-			//	type = "write";
-			//Try *tmp = new Exam(subject, question, num_of_question, variant, type);
-			//q.enqueue(tmp);
-			//delete[] question;
 			system("pause");
 			break;
 		}
@@ -146,22 +60,8 @@ void Menu::Budy()
 		{
 			system("cls");
 			std::cout << "<3>\n";
-			cout << "Creating Try: " << endl;
-			cout << "It`s a virtual class:)" << endl;
-			//char variant;
-			//string subject;
-			//unsigned int num_of_question;
-			//init_fields(&subject, &num_of_question, &variant);
-			//string *question = new string[num_of_question];
-			//for (int i = 0; i < num_of_question; i++)
-			//{
-			//	cout << "question: ";
-			//	//cin >> question[i];
-			//	getline(cin >> ws, question[i]);
-			//	cout << "> " << question[i] << endl;
-			//}
-			//Try *tmp = new Try(subject, question, num_of_question, variant);
-			//q.enqueue(tmp);
+			remove_queue(q);
+			cout << "All objects were deleted" << endl;
 			system("pause");
 			break;
 		}
@@ -170,7 +70,6 @@ void Menu::Budy()
 			system("cls");
 			std::cout << "<4>\n";
 			show_queue(q);
-			//q.travel();
 			system("pause");
 			break;
 		}
@@ -178,8 +77,7 @@ void Menu::Budy()
 		{
 			system("cls");
 			std::cout << "<5>\n";
-			////
-			q.dequeue();
+			q.pop();
 			system("pause");
 			break;
 		}
@@ -187,8 +85,7 @@ void Menu::Budy()
 		{
 			system("cls");
 			std::cout << "<6>\n";
-			save_to_file(q);
-			//q.travel_to_file();
+			q.travel_to_file();
 			system("pause");
 			break;
 		}
@@ -196,8 +93,8 @@ void Menu::Budy()
 		{
 			system("cls");
 			std::cout << "<7>\n";
-			read_from_file(q);
-			//q.read_from_file();
+			q.read_from_file();
+			cout << "Reading from file complete" << endl;
 			system("pause");
 			break;
 		}
@@ -205,6 +102,7 @@ void Menu::Budy()
 		{
 			system("cls");
 			std::cout << "<8>\n";
+			sort(q);
 			system("pause");
 			break;
 		}
@@ -212,6 +110,7 @@ void Menu::Budy()
 		{
 			system("cls");
 			std::cout << "<9>\n";
+			query(q);
 			system("pause");
 			break;
 		}
@@ -226,32 +125,64 @@ void Menu::Budy()
 		{
 			if (key > 10 || key < 1)
 			{
-				std::cout << "Try again)\n\n";
+				std::cout << "Try again)\n";
+				system("pause");
 			}
 			break;
 		}
 		}
 	} while (key != 10);
 }
-
+//--------------------------------------
+//Створення об’єкту класу Exam та завантаження його в контейнер
 void Menu::create_exam(Queue & q)
 {
 	Try *e = new Exam();
-	init_fields(e, q);
+	e->set_subject();
+	e->set_var();
+	e->set_num();
+	e->set_question();
+	q.push(e);
 }
-
+//--------------------------------------
+//Створення об’єкту класу Test та завантаження його в контейнер
 void Menu::create_test(Queue & q)
 {
 	Try *t = new Test();
-	init_fields(t, q);
+	t->set_subject();
+	t->set_var();
+	t->set_num();
+	t->set_question();
+	q.push(t);
 }
-
+//--------------------------------------
+//Виведення на екран об’єктів контейнера
 void Menu::show_queue(Queue & q)
 {
+	cout << "size queue: " << q.counter() << endl;
 	q.travel();
 }
-
+//--------------------------------------
+//Видалення об’єктів з контейнера
 void Menu::remove_queue(Queue & q)
 {
-
+	cout << "Deleting queue: " << endl;
+	int length = q.counter();
+	for (int i = 0; i < length; i++)
+		q.pop();
+}
+//--------------------------------------
+//Сортування об’єктів контейнера
+void Menu::sort(Queue &q)
+{
+	q.sort_queue();
+}
+//--------------------------------------
+//Виконання запиту за темою предмету
+void Menu::query(Queue & q)
+{
+	string tmp;
+	cout << "input Subject: ";
+	cin >> tmp;
+	q.query_queue(tmp);
 }

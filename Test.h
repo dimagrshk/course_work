@@ -1,27 +1,29 @@
+﻿/*Грішко Дмитро БС-51
+Визначення класу Test*/
 #pragma once
 #include <iostream>
 #include "Try.h"
 
-struct test_content
+struct test_content		//структура описує відповіді для тестів
 {
-	string answer[4];
+	string answer[4];   // варіантів відповідей на тест завжди чотири
 };
 
 class Test : public Try
 {
 private:
-	test_content *works;
+	test_content *works;	// масив структур для збереження відповідей для тесту
 public:
 	//Construcors
 	Test(); //default
-	Test(string sub, string *str, unsigned int num, char var, test_content *arr);
+	Test(string sub, string *str, int num, int var, test_content *arr); // конструктор з параметрами
 	//Destructor
 	~Test();
 	//Methods
-	void set_question();
-	void set_answer(int i);
-	void show() const;
-	void save_to_file() const;
-	friend ostream & operator<<(ostream & out, const Test & t);
-	friend istream & operator>>(istream & in, Test & t);
+	void set_question(); // перевизначений метод встановлення питань
+	void set_answer(int i); // метод встановлення відповідей
+	test_content * get_works() const; //повертає покажчик на масив структур
+	void show() const; // перевизначений метод відображення вмісту об'єкту
+	ostream& operator<<(ostream& out) const; ///перевизначенні методи виводу та вводу в потік
+	istream& operator>>(istream& in);
 };

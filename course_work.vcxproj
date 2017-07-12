@@ -148,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Exam.h" />
+    <ClInclude Include="Exception.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Serealizator.h" />

@@ -1,25 +1,26 @@
-#pragma once
+﻿/*Грішко Дмитро БС-51
+Визначення класу Exam*/
 #define Exam_h_
 #include <iostream>
-#include "Test.h"
+#include "Try.h"
 
 
 class Exam : public Try
 {
 private:
-	string type;
+	string type; // поле для позначення типу
 public:
 	//Construcors
 	Exam(); //defult
-	Exam(string sub, string *str, unsigned int num, char var, string typ);
+	Exam(string sub, string *str, int num, int var, string typ); // конструктор з параметрами
 	//Destructor
 	~Exam();
 	//Methods
-	void set_question();
-	void set_type();
-	void show() const;
-	void save_to_file() const;
-	//void read_from_file();
-	friend ostream & operator<<(ostream & out, const Exam & e);
-	friend istream & operator>>(istream & in, Exam & e);
+	void set_question(); // перевизначений метод встановлення питань
+	void set_type(); // метод встановлення відповідей
+	string get_type() const; // метод повернення типу екзамену
+	void show() const; // перевизначений метод відображення вмісту об'єкту
+	// to file
+	ostream& operator<<(ostream& out) const; ///перевизначенні методи виводу в потік
+	istream& operator>>(istream& in);
 };

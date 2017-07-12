@@ -1,29 +1,29 @@
+﻿/*Грішко Дмитро БС-51
+Визначення класу Menu*/
 #ifndef Menu_h
 #define Menu_h
-#include "Try.h"
-#include "Test.h"
-#include "Exam.h"
+
 #include "Queue.h"
-#include <iostream>
-#include <string.h>
-#include <string>
 
 class Menu {
 private:
-	
+	Menu();			// конструктор за замовчування
+	~Menu();			//деструктор
+	Menu(const Menu& m);//конструктор копіювання
+	Menu& operator=(Menu const& m);//оператор дорівнює
 public:
-	void Budy();
-	void create_exam(Queue &q);
-	void create_test(Queue &q);
-	void show_queue(Queue &q);
-	void remove_queue(Queue &q);
-	Menu() {
-
+	static Menu &instance()			//статична функція для повернення посиланя на статичний об'єкт
+	{
+		static Menu m;				//статичний об'єкт
+		return m;	
 	}
-	~Menu() {
-
-	}
-	
+	void Budy();					//відображення меню та взаємодії з ним
+	void create_exam(Queue &q);		//створення об'єкту екзамен
+	void create_test(Queue &q);		//створення ою'єкту тест
+	void show_queue(Queue &q);		//виведення черги на екран
+	void remove_queue(Queue &q);	//очищення черги
+	void sort(Queue &q);			//сортування черши
+	void query(Queue &q);			//запит до черги
 
 };
 
